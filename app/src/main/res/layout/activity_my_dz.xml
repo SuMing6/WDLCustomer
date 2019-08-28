@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.my.MyDzActivity">
+    <RelativeLayout
+        android:id="@+id/my_dz_tou"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/dp_30"
+        android:background="#fff"
+        android:paddingBottom="@dimen/dp_9"
+        >
+        <TextView
+            android:id="@+id/my_dz_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="＜"
+            android:textSize="@dimen/dp_14"
+            android:layout_marginTop="@dimen/dp_4"
+            android:layout_marginLeft="@dimen/dp_14"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:textSize="@dimen/dp_16"
+            android:text="我的收货地址"
+            android:textColor="#FF333333"
+            />
+    </RelativeLayout>
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/my_dz_tou"></android.support.v7.widget.RecyclerView>
+    <Button
+        android:id="@+id/my_dz_add"
+        android:layout_width="@dimen/dp_331"
+        android:layout_height="@dimen/dp_42"
+        android:background="@drawable/shape_mainactivity_button"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/dp_30"
+        android:text="新增收货地址"
+        android:textColor="#fff"
+        android:textSize="@dimen/dp_16"/>
+
+
+</RelativeLayout>

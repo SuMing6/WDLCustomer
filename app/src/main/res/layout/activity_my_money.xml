@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.my.MyMoneyActivity"
+    android:background="#FF9600">
+
+    <RelativeLayout
+        android:id="@+id/commodity_tou"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/dp_30"
+        android:paddingBottom="@dimen/dp_9"
+        >
+        <TextView
+            android:id="@+id/my_money_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="＜"
+            android:textColor="#fff"
+            android:textSize="@dimen/dp_14"
+            android:layout_marginTop="@dimen/dp_4"
+            android:layout_marginLeft="@dimen/dp_14"/>
+        <TextView
+            android:id="@+id/commodity_head"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:textSize="@dimen/dp_16"
+            android:textColor="#fff"
+            android:text="我的钱包"
+            />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/dp_24"
+        android:layout_marginLeft="@dimen/dp_24"
+        android:background="@drawable/shape_my_hy_edittext"
+        android:layout_marginTop="@dimen/dp_8"
+        android:gravity="center">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="当前余额（元）"
+            android:textSize="@dimen/dp_14"
+            android:textColor="#333333"
+            android:layout_marginTop="@dimen/dp_20"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4 0.0 0"
+            android:textSize="@dimen/dp_16"
+            android:textColor="#333333"
+            android:layout_marginTop="@dimen/dp_30"/>
+        <Button
+            android:layout_width="@dimen/dp_86"
+            android:layout_height="@dimen/dp_26"
+            android:text="立即充值"
+            android:textColor="#fff"
+            android:textSize="@dimen/dp_12"
+            android:background="@drawable/shape_mainactivity_button"
+            android:layout_marginBottom="@dimen/dp_20"
+            android:layout_marginTop="@dimen/dp_25"/>
+
+    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="余额明细"
+        android:textSize="@dimen/dp_14"
+        android:textColor="#343434"
+        android:paddingLeft="@dimen/dp_23"
+        android:paddingTop="@dimen/dp_14"
+        android:background="#fff"
+        android:paddingBottom="@dimen/dp_20"
+        android:layout_marginTop="@dimen/dp_30"
+        />
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#fff"
+        android:paddingLeft="@dimen/dp_23"
+        android:paddingRight="@dimen/dp_23"></android.support.v7.widget.RecyclerView>
+
+
+</LinearLayout>
