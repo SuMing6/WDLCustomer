@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Rider</string>
+    <string name="text">ចូលគណនី។</string>
+    <string name="rig">ដាក់ពាក្យសុំចូល។</string>
+    <string name="Rpwd">ភ្លេចលេខសំងាត់។</string>
+    <string name="login">ចូល។</string>
+
+
+    <string name="sy">ផ្ទះ។</string>
+    <string name="rw">កិច្ចការ។</string>
+    <string name="mt">របស់ខ្ញុំ។</string>
+    <string name="myrw">បេសកកម្មរបស់ខ្ញុំ។</string>
+</resources>

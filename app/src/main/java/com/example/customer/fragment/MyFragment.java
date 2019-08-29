@@ -23,6 +23,8 @@ import com.example.customer.activity.my.MyTicketActivity;
 import com.example.customer.activity.my.MyWmActivity;
 import com.example.customer.activity.my.MyYjActivity;
 
+import java.net.Socket;
+
 public class MyFragment extends Fragment {
 
     private View view;

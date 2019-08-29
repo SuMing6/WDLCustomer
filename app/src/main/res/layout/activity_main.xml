@@ -22,7 +22,7 @@
             android:layout_centerHorizontal="true"
             android:gravity="center"
             android:textSize="@dimen/dp_18"
-            android:text="登录"
+            android:text="@string/text"
             />
     </RelativeLayout>
 
