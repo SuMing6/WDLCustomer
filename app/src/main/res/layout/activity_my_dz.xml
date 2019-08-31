@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.my.MyDzActivity">
+    tools:context=".view.my.MyDzActivity">
     <RelativeLayout
         android:id="@+id/my_dz_tou"
         android:layout_width="match_parent"

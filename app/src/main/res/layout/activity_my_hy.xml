@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.my.MyHyActivity"
+    tools:context=".view.my.MyHyActivity"
     android:background="#FC5B28">
 
     <RelativeLayout
@@ -41,6 +41,7 @@
         android:layout_height="@dimen/dp_200"
         android:src="@mipmap/my_hy_image"/>
     <Button
+        android:id="@+id/my_hy_yqhy"
         android:layout_width="@dimen/dp_323"
         android:layout_height="@dimen/dp_42"
         android:background="@drawable/shape_mainactivity_button"

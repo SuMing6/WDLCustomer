@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/dp_16">
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:layout_width="@dimen/dp_50"
+        android:layout_height="@dimen/dp_50"
+        android:id="@+id/adapter_homepage_eight"
+        android:layout_gravity="center"/>
+    <TextView
+        android:id="@+id/adapter_homepage_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="姓名"
+        android:layout_marginTop="@dimen/dp_8"/>
+</LinearLayout>

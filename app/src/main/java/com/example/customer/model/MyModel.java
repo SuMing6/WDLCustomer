@@ -50,7 +50,13 @@ public class MyModel implements MyContract.MyModel {
                         myCallBack.success(o);
                         Log.e("你看看+mp",o+"");
                     }
-                });
+                    //  错误   io.reactivex.exceptions.OnErrorNotImplementedException: java.lang.IllegalStateException: Expected BEGIN_ARRAY but was STRING at line 1 column 32 path $.data
+                }, new Consumer<Throwable>() {
+                               @Override
+                               public void accept(Throwable throwable) throws Exception {
+                                   throwable.printStackTrace();
+                               }
+                           });
     }
 
     public interface MyCallBack{

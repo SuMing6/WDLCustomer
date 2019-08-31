@@ -24,16 +24,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.my.MyTicketActivity"></activity>
-        <activity android:name=".activity.my.MyMoneyActivity" />
-        <activity android:name=".activity.my.MySheZhiPwdActivity" />
-        <activity android:name=".activity.my.MySheZhiActivity" />
-        <activity android:name=".activity.my.MyDzAddActivity" />
-        <activity android:name=".activity.my.MyDzActivity" />
-        <activity android:name=".activity.my.MyScActivity" />
-        <activity android:name=".activity.my.MyHyActivity" />
-        <activity android:name=".activity.my.MyYjActivity" />
-        <activity android:name=".activity.my.MyWmActivity" />
+        <activity android:name=".adapter.HomeGoodsLeftAdapter"></activity>
+        <activity android:name=".fragment.homegoods.HomeGoodsFragment" />
+        <activity android:name=".view.homepage.HomepageGoodsActivity" />
+        <activity android:name=".adapter.HomePageNearbyAdapter" />
+        <activity android:name=".view.homepage.HomePageMessageCustomer" />
+        <activity android:name=".view.homepage.HomePageMessageActivity" />
+        <activity android:name=".view.my.MyTicketActivity" />
+        <activity android:name=".view.my.MyMoneyActivity" />
+        <activity android:name=".view.my.MySheZhiPwdActivity" />
+        <activity android:name=".view.my.MySheZhiActivity" />
+        <activity android:name=".view.my.MyDzAddActivity" />
+        <activity android:name=".view.my.MyDzActivity" />
+        <activity android:name=".view.my.MyScActivity" />
+        <activity android:name=".view.my.MyHyActivity" />
+        <activity android:name=".view.my.MyYjActivity" />
+        <activity android:name=".view.my.MyWmActivity" />
 
         <meta-data
             android:name="com.amap.api.v2.apikey"

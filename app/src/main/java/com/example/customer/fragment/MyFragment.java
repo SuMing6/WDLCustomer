@@ -12,18 +12,15 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
-import com.amap.api.mapcore.util.in;
 import com.example.customer.R;
-import com.example.customer.activity.my.MyDzActivity;
-import com.example.customer.activity.my.MyHyActivity;
-import com.example.customer.activity.my.MyMoneyActivity;
-import com.example.customer.activity.my.MyScActivity;
-import com.example.customer.activity.my.MySheZhiActivity;
-import com.example.customer.activity.my.MyTicketActivity;
-import com.example.customer.activity.my.MyWmActivity;
-import com.example.customer.activity.my.MyYjActivity;
-
-import java.net.Socket;
+import com.example.customer.view.my.MyDzActivity;
+import com.example.customer.view.my.MyHyActivity;
+import com.example.customer.view.my.MyMoneyActivity;
+import com.example.customer.view.my.MyScActivity;
+import com.example.customer.view.my.MySheZhiActivity;
+import com.example.customer.view.my.MyTicketActivity;
+import com.example.customer.view.my.MyWmActivity;
+import com.example.customer.view.my.MyYjActivity;
 
 public class MyFragment extends Fragment {
 

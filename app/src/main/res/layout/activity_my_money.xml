@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.my.MyMoneyActivity"
+    tools:context=".view.my.MyMoneyActivity"
     android:background="#FF9600">
 
     <RelativeLayout

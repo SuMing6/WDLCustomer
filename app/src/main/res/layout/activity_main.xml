@@ -94,6 +94,7 @@
                 android:hint="请输入手机号"
                 android:paddingLeft="@dimen/dp_35"
                 android:textColor="#FFCCCCCC"
+                android:text="15225080444"
                 />
         </RelativeLayout>
 

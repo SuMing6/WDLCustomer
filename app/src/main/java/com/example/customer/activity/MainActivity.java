@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -13,32 +12,48 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
 import com.example.customer.R;
-import com.example.customer.fragment.HomePageFragment;
+import com.example.customer.bean.LoginBean;
+import com.example.customer.bean.YAMBean;
+import com.example.customer.contract.MyContract;
+import com.example.customer.presenter.MyPresenter;
+import com.example.customer.util.RsaUtils;
 import com.example.customer.voice.LanContextWrapper;
 
+import java.security.PublicKey;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Locale;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MyContract.MyView.MainActivity {
 
 
+    public static double longitude;
+    public static double latitude;
+    public static String province;
+    public static String city;
     public static String district;
+
+    MyContract.MyPresenter myPresenter = new MyPresenter<>(this);
+    /* 密钥内容 base64 code */
+    private static String PUCLIC_KEY = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCDrouoy4rro4ICiwC+re4/uMZIylYtDXb1KnCBpKMgKLgB0GvI+L3rhONcWz40N0ar3wLLzffAgwNUJvc9m5EM/pgf0PnckzTK+bluA7enNb3dbXpqBV0Yu69ufv8hqhwpI3HB2csIvUqzPXtf7WHrMB8IGQCk67Y03ZCq4Kra5wIDAQAB";
+
+
+
 
     //声明AMapLocationClient类对象
     public AMapLocationClient mLocationClient = null;
@@ -50,17 +65,20 @@ public class MainActivity extends AppCompatActivity {
                 if (aMapLocation.getErrorCode() == 0) {
                     //定位成功回调信息，设置相关消息
                     aMapLocation.getLocationType();//获取当前定位结果来源，如网络定位结果，详见定位类型表
-                    aMapLocation.getLatitude();//获取纬度
-                    aMapLocation.getLongitude();//获取经度
+                    //获取纬度
+                    latitude = aMapLocation.getLatitude();
+                    //获取经度
+                    longitude = aMapLocation.getLongitude();
                     aMapLocation.getAccuracy();//获取精度信息
                     SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                     //textView.setText(aMapLocation.getCity());
                     Date date = new Date(aMapLocation.getTime());
                     df.format(date);//定位时间
                     aMapLocation.getCity();
-                    //定位城区
+                    province = aMapLocation.getProvince();//省信息
+                    city = aMapLocation.getCity();//城市信息
+//定位城区
                     district = aMapLocation.getDistrict();
-                    Log.e("AGE","获取经度："+aMapLocation.getLongitude()+"获取伟度："+aMapLocation.getLatitude()+"地名："+aMapLocation.getCity().toString()+"城区："+aMapLocation.getDistrict()+"街道："+aMapLocation.getStreet());
                     //Log.e("AGE","获取经度："+aMapLocation.getLongitude()+"获取伟度："+aMapLocation.getLatitude()+"地名："+aMapLocation.getCity().toString());
                     //位置
                     //输入框失去焦点
@@ -82,6 +100,11 @@ public class MainActivity extends AppCompatActivity {
     private CheckBox language_jpz;
     private RadioGroup loging_radioGroup;
     private SharedPreferences sp;
+    private String source;
+    private EditText edit_pwd;
+    private EditText edit_phone;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,18 +123,31 @@ public class MainActivity extends AppCompatActivity {
 
     private void Loging() {
         Button button = findViewById(R.id.loging_login);
+        edit_phone = findViewById(R.id.main_phone);
+        edit_pwd = findViewById(R.id.main_pwd);
+        TextView YZM = findViewById(R.id.main_Yzm);
+        YZM.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String phone = edit_phone.getText().toString();
+                String pwd = edit_pwd.getText().toString();
+                //SRA加密
+                String passwordjiami = PasswordJiami.passwordjiami(phone);
+                myPresenter.PMainactivityYzm(passwordjiami);
+            }
+        });
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, ShowActivity.class);
-                startActivity(intent);
-                finish();
+                String phone = edit_phone.getText().toString();
+                String pwd = edit_pwd.getText().toString();
+                String passwordjiami = PasswordJiami.passwordjiami(phone);
+
+                myPresenter.PMainactivityLogin(passwordjiami, Integer.parseInt(pwd));
             }
         });
-        /*Intent intent = new Intent(MainActivity.this, ShowActivity.class);
-        startActivity(intent);
-        finish();*/
     }
+
 
     private void Register() {
         TextView textView = findViewById(R.id.main_register);
@@ -124,6 +160,31 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+
+
+    @Override
+    public void MainactivityYzm(Object object) {
+        YAMBean yamBean = (YAMBean) object;
+        if (yamBean.getCode()==0){
+            edit_pwd.setText(yamBean.getMsg());
+        }else {
+            Toast.makeText(MainActivity.this, yamBean.getMsg() + "", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    @Override
+    public void MainactivityLogin(Object object) {
+        LoginBean loginBean = (LoginBean) object;
+        Toast.makeText(MainActivity.this,loginBean.getMsg()+"",Toast.LENGTH_LONG).show();
+        if (loginBean.getCode()==0){
+            Intent intent = new Intent(this,ShowActivity.class);
+            startActivity(intent);
+        }else {
+            Toast.makeText(MainActivity.this,loginBean.getMsg()+"",Toast.LENGTH_LONG).show();
+        }
+    }
+
+    /*--------------------------------------------------------------------------------------------------------------------------------------------------*/
     private void language() {
         language_zg = findViewById(R.id.language_zg);
         language_jpz = findViewById(R.id.language_jpz);
@@ -159,28 +220,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-    /**
-     * 更改应用语言
-     *
-     * @param
-     */
-    /*public void changeAppLanguage(Locale locale) {
-        DisplayMetrics metrics = getResources().getDisplayMetrics();
-        Configuration configuration = getResources().getConfiguration();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            configuration.setLocale(locale);
-        } else {
-            configuration.locale = locale;
-        }
-        getResources().updateConfiguration(configuration, metrics);
-        //重新启动Activity
-        *//*Intent intent = new Intent(this, MainActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(intent);*//*
-        Configuration config = getResources().getConfiguration();
-        getResources().updateConfiguration(config, getResources().getDisplayMetrics());
-    }*/
-
 
     private void gaode() {
         //初始化定位
@@ -271,5 +310,21 @@ public class MainActivity extends AppCompatActivity {
             recreate();
         }
     }
+
+}
+//PUBLIC_KEY_STR  公钥
+class PasswordJiami {
+    public  static PublicKey publicKey;
+    public  static String passwordjiami( String password){
+        //获取公钥
+        publicKey = RsaUtils.keyStrToPublicKey("MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCDrouoy4rro4ICiwC+re4/uMZIylYtDXb1KnCBpKMgKLgB0GvI+L3rhONcWz40N0ar3wLLzffAgwNUJvc9m5EM/pgf0PnckzTK+bluA7enNb3dbXpqBV0Yu69ufv8hqhwpI3HB2csIvUqzPXtf7WHrMB8IGQCk67Y03ZCq4Kra5wIDAQAB");
+        //公钥加密结果
+        String  publicEncryptedResult = RsaUtils.encryptDataByPublicKey(password.getBytes(), publicKey);
+        //私钥解密结果
+//       String privateDecryptedResult = RsaUtils.decryptedToStrByPrivate(publicEncryptedResult,privateKey);
+        return publicEncryptedResult;
+    }
+
+
 
 }

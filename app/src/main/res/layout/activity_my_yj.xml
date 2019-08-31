@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.my.MyYjActivity"
+    tools:context=".view.my.MyYjActivity"
     android:background="#F8F8F8"
     android:clickable="true"
     android:focusableInTouchMode="true">

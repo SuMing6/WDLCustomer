@@ -57,6 +57,7 @@
                 android:maxLength="11"
                 android:inputType="phone"
                 android:hint="请输入手机号"
+                android:text="15225080444"
                 android:paddingLeft="@dimen/dp_35"
                 android:textColor="#FFCCCCCC"
                 />

@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.mob.sdk'
 
 android {
     compileSdkVersion 29
@@ -21,6 +22,29 @@ android {
         }
     }
 }
+MobSDK {
+    appKey "2c3f25fd4b8b2"
+    appSecret "4e9edf86697a7a628c08850811131970"
+    ShareSDK {
+        //平台配置信息
+        devInfo {
+            Wechat {
+                appId "wx4868b35061f87885"
+                appSecret "64020361b8ec4c99936c0e3999a9f249"
+                bypassApproval true
+            }
+            WechatMoments {
+                id 5
+                sortId 5
+                appId "wx4868b35061f87885"
+                appSecret "64020361b8ec4c99936c0e3999a9f249"
+                bypassApproval true
+                enable true
+            }
+        }
+    }
+}
+
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -47,6 +71,7 @@ dependencies {
     //数据库
     /*implementation 'org.greenrobot:greendao:3.1.0'
         implementation 'org.greenrobot:greendao-generator:3.1.0'*/
+
     //图片展示框架
     implementation 'com.facebook.fresco:fresco:1.5.0'
     implementation 'com.github.bumptech.glide:glide:4.9.0'
