@@ -12,7 +12,7 @@
         android:paddingBottom="@dimen/dp_9"
         >
         <TextView
-            android:id="@+id/my_hy_back"
+            android:id="@+id/myview_star_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="＜"
@@ -20,13 +20,12 @@
             android:layout_marginTop="@dimen/dp_4"
             android:layout_marginLeft="@dimen/dp_14"/>
         <TextView
-            android:id="@+id/commodity_head"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:gravity="center"
             android:textSize="@dimen/dp_16"
-            android:text="邀请好友"
+            android:text="评价"
             android:textColor="#FF333333"
             />
     </RelativeLayout>
@@ -53,6 +52,7 @@
             android:layout_marginRight="@dimen/dp_23"
             >
             <EditText
+                android:id="@+id/myview_star_edittext"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#F4F4F4"
@@ -65,9 +65,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:numStars="5"
-            android:stepSize="0.5"
+            android:stepSize="1"
             android:layout_marginTop="@dimen/dp_20"/>
         <Button
+            android:id="@+id/myview_star_button"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_44"
             android:text="提交"

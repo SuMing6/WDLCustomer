@@ -53,6 +53,30 @@
                             android:textSize="@dimen/dp_14"
                             android:textColor="#EF2635"
                             />
+                        <TextView
+                            android:visibility="gone"
+                            android:id="@+id/adapter_home_goods_right_okx"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="可选规格"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentRight="true"
+                            android:textSize="@dimen/dp_12"
+                            android:textColor="#FF9600"
+                            android:padding="@dimen/dp_4"
+                            android:background="@drawable/shape_homepage_goods_textview"
+                            />
+                        <TextView
+                            android:visibility="gone"
+                            android:id="@+id/adapter_home_goods_right_gwcar"
+                            android:layout_width="@dimen/dp_20"
+                            android:layout_height="@dimen/dp_20"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentRight="true"
+                            android:background="@drawable/shape_mainactivity_button"
+                            android:text="+"
+                            android:gravity="center"
+                            android:textColor="#fff"/>
                 </RelativeLayout>
 
         </LinearLayout>

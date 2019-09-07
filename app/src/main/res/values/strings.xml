@@ -9,4 +9,5 @@
     <string name="rw">任务</string>
     <string name="mt">我的</string>
     <string name="myrw">我的任务</string>
+    <string name="title_activity_submission_yh">SubmissionYHActivity</string>
 </resources>

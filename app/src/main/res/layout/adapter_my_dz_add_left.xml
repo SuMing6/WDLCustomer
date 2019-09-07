@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".adapter.HomeGoodsLeftAdapter"
+    android:paddingBottom="@dimen/dp_2"
+    android:id="@+id/adapter_subminssion_left_RelativeLayout"
+    android:background="#fff"
+    >
+    <TextView
+        android:id="@+id/adapter_my_dz_add_left_name"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="tian"
+        android:textSize="@dimen/dp_14"
+        android:textColor="#333333"
+        android:paddingTop="@dimen/dp_16"
+        android:paddingBottom="@dimen/dp_16"
+        android:gravity="center"/>
+</RelativeLayout>

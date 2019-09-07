@@ -17,13 +17,14 @@
         android:background="#FCFCFC"
         android:paddingRight="@dimen/dp_12"
         android:paddingLeft="@dimen/dp_12">
+
         <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/homepage_goods_SimpleDraweeView"
             android:layout_width="@dimen/dp_73"
             android:layout_height="@dimen/dp_73"
             android:layout_alignParentRight="true"
-            app:roundedCornerRadius="@dimen/dp_20"
-            android:layout_marginRight="@dimen/dp_12"/>
+            android:layout_marginRight="27dp"
+            app:roundedCornerRadius="@dimen/dp_20" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -134,14 +135,87 @@
             </LinearLayout>
         </LinearLayout>
     </RelativeLayout>
-    <android.support.design.widget.TabLayout
-        android:id="@+id/homepage_goods_TabLayout"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_40"
-        android:background="#FCFCFC"></android.support.design.widget.TabLayout>
-    <android.support.v4.view.ViewPager
-        android:id="@+id/homepage_goods_ViewPager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#FCFCFC"></android.support.v4.view.ViewPager>
+        android:layout_height="match_parent">
+        <android.support.design.widget.TabLayout
+            android:id="@+id/homepage_goods_TabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_40"
+            android:background="#FCFCFC"></android.support.design.widget.TabLayout>
+        <android.support.v4.view.ViewPager
+            android:id="@+id/homepage_goods_ViewPager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/homepage_goods_bun"
+            android:layout_below="@+id/homepage_goods_TabLayout"
+            ></android.support.v4.view.ViewPager>
+        <LinearLayout
+            android:id="@+id/homepage_goods_bun"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_44"
+            android:orientation="horizontal"
+            android:layout_alignParentBottom="true">
+            <RelativeLayout
+                android:layout_width="@dimen/dp_50"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_3"
+                android:layout_marginBottom="@dimen/dp_3"
+                android:layout_marginLeft="@dimen/dp_15"
+                >
+                <ImageView
+                    android:layout_width="@dimen/dp_40"
+                    android:layout_height="@dimen/dp_40"
+                    android:src="@mipmap/homepage_shppin_car"
+                    />
+                <ImageView
+                    android:layout_width="@dimen/dp_14"
+                    android:layout_height="@dimen/dp_14"
+                    android:src="@mipmap/homepage_shpin_cars"
+                    android:layout_alignParentRight="true"
+                    />
+                <TextView
+                    android:id="@+id/homepage_goods_nub"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/dp_4"
+                    android:textColor="#fff"
+                    android:textSize="@dimen/dp_10"/>
+            </RelativeLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/dp_27">
+                <TextView
+                    android:id="@+id/homepage_goods_money"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="￥ 0"
+                    android:textColor="#EF2635"
+                    android:textSize="@dimen/dp_14"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="             "
+                    android:textSize="@dimen/dp_12"
+                    android:textColor="#666666"
+                    />
+            </LinearLayout>
+            <Button
+                android:id="@+id/homepage_goods_Js"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/dp_45"
+                android:text="结算"
+                android:textColor="#FFFFFF"
+                android:textSize="@dimen/dp_16"
+                android:background="#FF9600"
+                />
+        </LinearLayout>
+    </RelativeLayout>
 </LinearLayout>

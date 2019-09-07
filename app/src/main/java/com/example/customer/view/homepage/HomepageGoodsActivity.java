@@ -1,7 +1,6 @@
 package com.example.customer.view.homepage;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
 import android.support.design.widget.TabLayout;
@@ -14,19 +13,21 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.customer.R;
+import com.example.customer.activity.MainActivity;
+import com.example.customer.activity.PasswordJiami;
 import com.example.customer.adapter.TabLayoutAdapter;
 import com.example.customer.bean.HomeGoodsBean;
+import com.example.customer.bean.HomeGoodsCarBean;
 import com.example.customer.contract.MyContract;
-import com.example.customer.fragment.homegoods.HomeDetailsFragment;
-import com.example.customer.fragment.homegoods.HomeEvaluateFragment;
-import com.example.customer.fragment.homegoods.HomeGoodsFragment;
-import com.example.customer.fragment.myticket.MyTicketHBFragment;
-import com.example.customer.fragment.myticket.MyTicketKQFragment;
+import com.example.customer.view.homegoods.HomeDetailsFragment;
+import com.example.customer.view.homegoods.HomeEvaluateFragment;
+import com.example.customer.view.homegoods.HomeGoodsFragment;
 import com.example.customer.presenter.MyPresenter;
-import com.example.customer.view.my.MyTicketActivity;
+import com.example.customer.view.homegoods.HomeGoodsSubmissionActivity;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.ArrayList;
@@ -42,21 +43,52 @@ public class HomepageGoodsActivity extends AppCompatActivity implements MyContra
     private TextView name;
     private SimpleDraweeView simpleDraweeView;
     private HomeGoodsBean homeGoodsBean;
+    //店铺id
     public static int id;
+    private TextView nub;
+    private TextView money;
+    private HomeGoodsCarBean homeGoodsCarBeane;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         XNAJ();
         setContentView(R.layout.activity_homepage_goods);
+        TextView textView =findViewById(R.id.activity_back);
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
+        nub = findViewById(R.id.homepage_goods_nub);
+        money = findViewById(R.id.homepage_goods_money);
         init();
         //获取id
         getid();
         //导航栏
-        tabLayout();
+        String s = MainActivity.token;
+        String passwjiemi = PasswordJiami.passwjiemi(s);
+        String passwordjiami = PasswordJiami.passwordjiami(passwjiemi);
+        myPresenter.PHomePageGoodsCar(id,MainActivity.user_id,passwordjiami);
+        //结算
+        js();
 
+        tabLayout();
     }
 
+    private void js() {
+        Button button = findViewById(R.id.homepage_goods_Js);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomepageGoodsActivity.this, HomeGoodsSubmissionActivity.class);
+                intent.putExtra("id",id);
+                startActivity(intent);
+            }
+        });
+    }
 
 
     private void init() {
@@ -93,6 +125,19 @@ public class HomepageGoodsActivity extends AppCompatActivity implements MyContra
 
         }
     }
+
+    @Override
+    public void ShowHomePageGoodsCar(Object object) {
+        homeGoodsCarBeane = (HomeGoodsCarBean) object;
+        Log.e("TAG","商品详情w"+ homeGoodsCarBeane.getCode()+"---"+ homeGoodsCarBeane.getData().getMoney());
+        if (homeGoodsCarBeane.getMsg().equals("ok")){
+            nub.setText(homeGoodsCarBeane.getData().getNumber()+"");
+            money.setText("￥"+homeGoodsCarBeane.getData().getMoney());
+            Log.e("TAG","商品详情n"+ homeGoodsCarBeane.getCode()+"---"+ homeGoodsCarBeane.getData().getMoney());
+        }
+
+    }
+
     private void tabLayout() {
         TabLayout tab = findViewById(R.id.homepage_goods_TabLayout);
         ViewPager viewPager = findViewById(R.id.homepage_goods_ViewPager);
@@ -108,9 +153,22 @@ public class HomepageGoodsActivity extends AppCompatActivity implements MyContra
         list_Title.add("详情");
 
         viewPager.setAdapter(new TabLayoutAdapter(getSupportFragmentManager(), this,fragmentList,list_Title));
+        viewPager.setAdapter(new TabLayoutAdapter(getSupportFragmentManager(), this,fragmentList,list_Title));
         tab.setupWithViewPager(viewPager);//此方法就是让tablayout和ViewPager联动
     }
-/*-------------------------------------------------------------------------------------------------*/
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        String s = MainActivity.token;
+        String passwjiemi = PasswordJiami.passwjiemi(s);
+        String passwordjiami = PasswordJiami.passwordjiami(passwjiemi);
+        myPresenter.PHomePageGoodsCar(id,MainActivity.user_id,passwordjiami);
+    }
+
+    /*-------------------------------------------------------------------------------------------------*/
     private void XNAJ() {
         if (Build.VERSION.SDK_INT >= 21) {
             Window window = getWindow();

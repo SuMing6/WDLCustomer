@@ -15,8 +15,8 @@ import android.widget.TextView;
 
 import com.example.customer.R;
 import com.example.customer.adapter.TabLayoutAdapter;
-import com.example.customer.fragment.myticket.MyTicketHBFragment;
-import com.example.customer.fragment.myticket.MyTicketKQFragment;
+import com.example.customer.view.myticket.MyTicketHBFragment;
+import com.example.customer.view.myticket.MyTicketKQFragment;
 
 import java.util.ArrayList;
 

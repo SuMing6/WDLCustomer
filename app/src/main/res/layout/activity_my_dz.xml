@@ -33,9 +33,14 @@
             />
     </RelativeLayout>
     <android.support.v7.widget.RecyclerView
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginRight="@dimen/dp_12"
+        android:layout_marginLeft="@dimen/dp_12"
+        android:id="@+id/my_dz_RecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/my_dz_tou"></android.support.v7.widget.RecyclerView>
+        android:layout_below="@+id/my_dz_tou"
+        android:paddingBottom="@dimen/dp_70"></android.support.v7.widget.RecyclerView>
     <Button
         android:id="@+id/my_dz_add"
         android:layout_width="@dimen/dp_331"

@@ -13,7 +13,14 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- 用于申请调用A-GPS模块 -->
     <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" /> <!-- 用于申请获取蓝牙信息进行室内定位 -->
     <uses-permission android:name="android.permission.BLUETOOTH" />
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" /> <!-- 这个权限用于进行网络定位 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- 这个权限用于访问GPS定位 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
+    <meta-data
+        android:name="com.baidu.lbsapi.API_KEY"
+        android:value="Z1A5LcGo546SEHKN2VjWCPwyKumivst4"></meta-data>
 
     <application
         android:name=".util.App"
@@ -24,8 +31,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".adapter.HomeGoodsLeftAdapter"></activity>
-        <activity android:name=".fragment.homegoods.HomeGoodsFragment" />
+        <activity android:name=".view.homepage.HomePageOnclickEightActivity" />
+        <activity android:name=".view.homegoods.SubmissionDZActivity" />
+        <activity android:name=".view.homegoods.SubmissionYHActivity" />
+        <activity android:name=".view.homegoods.SubmissionHBActivity" />
+        <activity android:name=".view.homegoods.HomeGoodsSubmissionActivity" />
+        <activity android:name=".view.my.MySheZhiNameActivity" />
+        <activity android:name=".adapter.HomeGoodsLeftAdapter" />
+        <activity android:name=".view.homegoods.HomeGoodsFragment" />
         <activity android:name=".view.homepage.HomepageGoodsActivity" />
         <activity android:name=".adapter.HomePageNearbyAdapter" />
         <activity android:name=".view.homepage.HomePageMessageCustomer" />
@@ -50,13 +63,19 @@
         <activity android:name=".activity.RegisterActivity" />
         <activity android:name=".activity.MyView" />
         <activity android:name=".activity.ShowActivity" />
-        <activity android:name=".activity.MainActivity">
+        <activity
+            android:name=".activity.MainActivity"
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
+        </activity> <!-- 百度地图 -->
+        <service
+            android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remote" />
     </application>
 
 </manifest>

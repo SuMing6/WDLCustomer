@@ -57,6 +57,7 @@
                 android:textSize="@dimen/dp_16"
                 android:layout_marginRight="@dimen/dp_30"/>
             <EditText
+                android:id="@+id/my_dz_add_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#fff"
@@ -77,6 +78,7 @@
                 android:textSize="@dimen/dp_16"
                 android:layout_marginRight="@dimen/dp_30"/>
             <EditText
+                android:id="@+id/my_dz_add_phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#fff"
@@ -98,6 +100,7 @@
                 android:textSize="@dimen/dp_16"
                 android:layout_marginRight="@dimen/dp_30"/>
             <EditText
+                android:id="@+id/my_dz_add_wx"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#fff"
@@ -164,6 +167,7 @@
                 android:textSize="@dimen/dp_16"
                 android:layout_marginRight="@dimen/dp_30"/>
             <EditText
+                android:id="@+id/my_dz_add_xx"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#fff"
@@ -173,6 +177,7 @@
         </LinearLayout>
     </LinearLayout>
     <Button
+        android:id="@+id/my_dz_add_button"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_42"
         android:background="@drawable/shape_mainactivity_button"
@@ -183,5 +188,15 @@
         android:textSize="@dimen/dp_16"
         android:textColor="#fff"
         />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/my_dz_add_e_food"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"/>
+    </RelativeLayout>
+
 
 </LinearLayout>

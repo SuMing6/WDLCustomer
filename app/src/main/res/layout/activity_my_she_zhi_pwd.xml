@@ -52,6 +52,7 @@
             android:textColor="#333"
             />
         <EditText
+            android:id="@+id/my_shezhi_pwd_oldpwd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dp_13"
@@ -73,6 +74,7 @@
             android:textColor="#333"
             />
         <EditText
+            android:id="@+id/my_shezhi_pwd_pwd1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dp_13"
@@ -94,6 +96,7 @@
             android:textColor="#333"
             />
         <EditText
+            android:id="@+id/my_shezhi_pwd_pwd2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="@dimen/dp_10"
@@ -101,6 +104,7 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/my_shezhi_pwd_qr"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_44"
         android:layout_marginTop="@dimen/dp_85"

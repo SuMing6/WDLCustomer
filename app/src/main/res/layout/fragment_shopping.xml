@@ -26,6 +26,10 @@
     </RelativeLayout>
 
     <android.support.v7.widget.RecyclerView
+        android:layout_marginTop="@dimen/dp_12"
+        android:layout_marginLeft="@dimen/dp_15"
+        android:layout_marginRight="@dimen/dp_15"
+        android:id="@+id/shopping_RecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
 </LinearLayout>

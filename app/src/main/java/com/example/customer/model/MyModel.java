@@ -32,7 +32,12 @@ public class MyModel implements MyContract.MyModel {
                         myCallBack.success(o);
                         Log.e("你看看+mg",o+"");
                     }
-                });
+                }/*, new Consumer<Throwable>() {
+                               @Override
+                               public void accept(Throwable throwable) throws Exception {
+                                   throwable.printStackTrace();
+                               }
+                           }*/);
     }
 
     @Override

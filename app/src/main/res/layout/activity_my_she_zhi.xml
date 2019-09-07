@@ -58,13 +58,15 @@
                 android:textSize="@dimen/dp_14"
                 android:layout_marginRight="@dimen/dp_30"/>
             <TextView
+                android:id="@+id/my_shezhi_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="张小三"
+                android:text=" "
                 android:textColor="#333"
                 android:textSize="@dimen/dp_14"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="@dimen/dp_24"/>
+                android:layout_marginRight="@dimen/dp_24"
+                android:background="#fff"/>
         </RelativeLayout>
         <RelativeLayout
             android:layout_width="match_parent"
@@ -79,13 +81,13 @@
                 android:textSize="@dimen/dp_14"
                 android:layout_marginRight="@dimen/dp_30"
                 android:layout_centerVertical="true"/>
-            <ImageView
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/my_shezhi_headimg"
                 android:layout_width="@dimen/dp_33"
                 android:layout_height="@dimen/dp_33"
                 android:src="@mipmap/ic_launcher"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="@dimen/dp_24"/>
-
         </RelativeLayout>
         <RelativeLayout
             android:layout_width="match_parent"
@@ -100,18 +102,21 @@
                 android:textSize="@dimen/dp_14"
                 android:layout_marginRight="@dimen/dp_30"/>
             <RadioGroup
+                android:id="@+id/my_shezhi_RadioGroup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="@dimen/dp_24">
                 <RadioButton
+                    android:id="@+id/my_shezhi_button1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="男"
                     android:textSize="@dimen/dp_14"
                     android:textColor="#333333"/>
                 <RadioButton
+                    android:id="@+id/my_shezhi_button2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="女"

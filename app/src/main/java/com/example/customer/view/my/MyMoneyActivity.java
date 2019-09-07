@@ -21,6 +21,13 @@ public class MyMoneyActivity extends AppCompatActivity {
         setContentView(R.layout.activity_my_money);
         //退出
         back();
+        //设置钱
+        money();
+    }
+
+    private void money() {
+        TextView money = findViewById(R.id.my_money_money);
+        money.setText(getIntent().getStringExtra("money"));
     }
 
     private void back() {

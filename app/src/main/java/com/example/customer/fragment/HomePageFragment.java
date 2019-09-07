@@ -4,6 +4,8 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -39,15 +41,20 @@ import com.example.customer.bean.EightBean;
 import com.example.customer.bean.HomaPageDzBean;
 import com.example.customer.bean.HomeBannerBean;
 import com.example.customer.bean.HomeGoodsBean;
+import com.example.customer.bean.HomePageSanBean;
+import com.example.customer.bean.HomeTBean;
 import com.example.customer.bean.NearbyBean;
 import com.example.customer.contract.MyContract;
 import com.example.customer.presenter.MyPresenter;
 import com.example.customer.view.homepage.HomePageMessageActivity;
+import com.example.customer.view.homepage.HomePageOnclickEightActivity;
 import com.example.customer.view.homepage.HomepageGoodsActivity;
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.youth.banner.Banner;
 import com.youth.banner.loader.ImageLoader;
 
+import java.net.URI;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -58,9 +65,9 @@ public class HomePageFragment extends Fragment implements MyContract.MyView.Home
     public static View view;
 
     MyContract.MyPresenter myPresenter = new MyPresenter<>(this);
-    private int province_id;
-    private int city_id;
-    private int area_id;
+    public static int province_id;
+    public static int city_id;
+    public static int area_id;
     List<NearbyBean.DataBean> nearbyBeans = new ArrayList<>();
     List<EightBean.DataBean> eightBean = new ArrayList<>();
     private HomePageNearbyAdapter adapter;
@@ -68,6 +75,11 @@ public class HomePageFragment extends Fragment implements MyContract.MyView.Home
     private Banner banner;
     List<HomeBannerBean.DataBean> beanList = new ArrayList<>();
     List<String> integerList = new ArrayList<String>();
+    private SimpleDraweeView simpleDraweeView1;
+    private SimpleDraweeView simpleDraweeView2;
+    private SimpleDraweeView simpleDraweeView3;
+    private SimpleDraweeView simpleDraweeView;
+    private NestedScrollView scrollView;
 
     @Nullable
     @Override
@@ -81,6 +93,8 @@ public class HomePageFragment extends Fragment implements MyContract.MyView.Home
         super.onActivityCreated(savedInstanceState);
 
         myPresenter.PHomepageDz(MainActivity.province,MainActivity.city,MainActivity.district);
+
+        //Log.e("省市区",MainActivity.province+""+MainActivity.city+""+MainActivity.district);
         //滑动冲突
         huaDong();
         //定位
@@ -97,10 +111,25 @@ public class HomePageFragment extends Fragment implements MyContract.MyView.Home
         banner();
         //商品详情
         goods();
+        //图片
+        pic();
 
+        myPresenter.PHomepageSan();
+        //tupian初始化
+        init();
 
+    }
 
+    private void pic() {
+        myPresenter.PHomepageT(3);
 
+    }
+
+    private void init() {
+        simpleDraweeView = view.findViewById(R.id.homepage_SimpleDraweeView);
+        simpleDraweeView1 = view.findViewById(R.id.homepage_SimpleDraweeView1);
+        simpleDraweeView2 = view.findViewById(R.id.homepage_SimpleDraweeView2);
+        simpleDraweeView3 = view.findViewById(R.id.homepage_SimpleDraweeView3);
     }
 
     private void goods() {
@@ -117,6 +146,7 @@ public class HomePageFragment extends Fragment implements MyContract.MyView.Home
 
     private void banner() {
         banner = view.findViewById(R.id.homepage_Banner);
+
         myPresenter.PHomepageBanner(2);
     }
 
@@ -127,6 +157,14 @@ public class HomePageFragment extends Fragment implements MyContract.MyView.Home
 
         eightAdapter = new HomePageEightAdapter(getActivity(),eightBean);
         recyclerView.setAdapter(eightAdapter);
+        eightAdapter.setSetOnClickItem(new HomePageEightAdapter.setOnClickItem() {
+            @Override
+            public void onGreat(int money) {
+                Intent intent = new Intent(getContext(), HomePageOnclickEightActivity.class);
+                intent.putExtra("id",money);
+                startActivity(intent);
+            }
+        });
 
     }
 
@@ -134,13 +172,29 @@ public class HomePageFragment extends Fragment implements MyContract.MyView.Home
         XRecyclerView xRecyclerView = view.findViewById(R.id.homepage_XRecyclerView);
 
         myPresenter.PHomepageNearby(MainActivity.longitude+"",MainActivity.latitude+"",province_id,city_id,area_id,0);
+        //Log.e("省市区",MainActivity.longitude+"经纬"+MainActivity.latitude+"--"+province_id+"--"+city_id+"--"+area_id);
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        xRecyclerView.setLayoutManager(linearLayoutManager);
+        LinearLayoutManager manager = new LinearLayoutManager(getContext());
+        manager.setOrientation(LinearLayoutManager.VERTICAL);
+        xRecyclerView.setLayoutManager(manager);
+
+        xRecyclerView.setPullRefreshEnabled(true);
+        xRecyclerView.setLoadingMoreEnabled(true);
 
         adapter = new HomePageNearbyAdapter(getActivity(),nearbyBeans);
         xRecyclerView.setAdapter(adapter);
+        /*//解决滑动冲突
+        scrollView.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
+            int page = 0 ;
+            @Override
+            public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+                if (scrollY == (v.getChildAt(0).getMeasuredHeight() - v.getMeasuredHeight())) {
+                    //底部加载
+                    page++;
+                }
+            }
 
+        });*/
 
     }
 
@@ -189,7 +243,7 @@ public class HomePageFragment extends Fragment implements MyContract.MyView.Home
             }
         });
 
-        final NestedScrollView scrollView = view.findViewById(R.id.homepage_ScrollView);
+        scrollView = view.findViewById(R.id.homepage_ScrollView);
         scrollView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -216,10 +270,14 @@ public class HomePageFragment extends Fragment implements MyContract.MyView.Home
     @Override
     public void ShowHomePageDz(Object object) {
         HomaPageDzBean homaPageDzBean = (HomaPageDzBean) object;
+
+        //Log.e("省市区",homaPageDzBean.getMsg());
         if (homaPageDzBean.getCode() == 0){
             province_id = homaPageDzBean.getInfo().getProvince_id();
             city_id = homaPageDzBean.getInfo().getCity_id();
             area_id = homaPageDzBean.getInfo().getArea_id();
+
+            Log.e("省市区",province_id+"---"+city_id+"---"+area_id);
         }
 
     }
@@ -237,14 +295,15 @@ public class HomePageFragment extends Fragment implements MyContract.MyView.Home
     @Override
     public void ShowHomePageBanner(Object object) {
         HomeBannerBean homeBannerBean = (HomeBannerBean) object;
-
         if (homeBannerBean.getCode() == 0){
             //Log.e("数据v",o.toString());
+            beanList.clear();
             beanList.addAll(homeBannerBean.getData());
             for (int i = 0; i < beanList.size(); i++) {
                 integerList.add(beanList.get(i).getPic());
+                Log.e("轮播图h",beanList.get(i).getPic());
             }
-            //Log.e("轮播图",integerList.toString());
+            Log.e("轮播图h",integerList.toString());
             banner.isAutoPlay(true).setDelayTime(2500).setImages(integerList).setImageLoader(new ImageLoader() {
                 @Override
                 public void displayImage(Context context, Object path, ImageView imageView) {
@@ -253,6 +312,28 @@ public class HomePageFragment extends Fragment implements MyContract.MyView.Home
             }).start();
         }else {
 
+        }
+
+    }
+
+
+    @Override
+    public void ShowHomePageT(Object object) {
+
+        HomeTBean homeTBean = (HomeTBean) object;
+        if (homeTBean.getCode() == 0){
+            simpleDraweeView.setImageURI(homeTBean.getData().get(0).getPic());
+        }
+        //Log.e("轮播图w",homeBannerBean.getData().get(0).getPic());
+    }
+
+    @Override
+    public void ShowHomePageSan(Object object) {
+        HomePageSanBean homePageSanBean = (HomePageSanBean) object;
+        if (homePageSanBean.getCode()==0){
+            simpleDraweeView1.setImageURI(homePageSanBean.getData().get(0).getImage());
+            simpleDraweeView2.setImageURI(homePageSanBean.getData().get(1).getImage());
+            simpleDraweeView3.setImageURI(homePageSanBean.getData().get(2).getImage());
         }
     }
 
@@ -268,8 +349,7 @@ public class HomePageFragment extends Fragment implements MyContract.MyView.Home
     }
 
     //点击NestedScrollView收起输入框
-    public static void HideKeyboard(View v)
-    {
+    public static void HideKeyboard(View v) {
         InputMethodManager imm = ( InputMethodManager ) v.getContext( ).getSystemService( Context.INPUT_METHOD_SERVICE );
         if ( imm.isActive( ) ) {
             imm.hideSoftInputFromWindow( v.getApplicationWindowToken( ) , 0 );

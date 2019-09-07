@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.my.MySheZhiNameActivity"
+    android:background="#fff">
+
+    <RelativeLayout
+        android:id="@+id/commodity_tou"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/dp_30"
+        android:background="#fff"
+        android:paddingBottom="@dimen/dp_9"
+        >
+        <TextView
+            android:id="@+id/my_shezhi_name_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="＜"
+            android:textSize="@dimen/dp_14"
+            android:layout_marginTop="@dimen/dp_4"
+            android:layout_marginLeft="@dimen/dp_14"/>
+        <TextView
+            android:id="@+id/commodity_head"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:textSize="@dimen/dp_16"
+            android:text="修改名称"
+            android:textColor="#FF333333"
+            />
+        <TextView
+            android:id="@+id/my_shezhi_name_ok"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="保存"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/dp_14"
+            android:textSize="@dimen/dp_14"
+            android:paddingLeft="@dimen/dp_8"
+            android:paddingRight="@dimen/dp_8"
+            android:paddingTop="@dimen/dp_2"
+            android:paddingBottom="@dimen/dp_2"
+            />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_20"
+        android:layout_marginRight="@dimen/dp_20"
+        android:layout_marginTop="@dimen/dp_50">
+        <EditText
+            android:id="@+id/my_shezhi_name_name"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#fff"
+            android:hint="请输入修改的昵称"/>
+    </LinearLayout>
+
+</LinearLayout>

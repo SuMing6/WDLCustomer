@@ -24,12 +24,69 @@ public interface MyContract {
         void PHomepageEight();
         //首页轮播图
         void PHomepageBanner(int cid);
+        void PHomepageT(int cid);
+        void PHomepageSan();
         //首页详情
         void PHomepageGoods(int id);
         //首页详情
         void PHomepageGoodsF(int id);
         //商品详情列表
         void PHomepageGoodsL(int id,int cid);
+        //详情添加购物车
+        void PHomePageGoods(int id,int gid,int sid,int num,int uid,String token);
+        //详情页购物车
+        void PHomePageGoodsCar(int id,int uid,String token);
+        void ShowHomePageOnclickEight(String lon,String lat,int province,int city,int area,int start,int shop_cate,int cate_id,int delivery,int coupon,int order);
+
+
+
+        //提交订单
+        void PHB(int id,int uid,String token);
+        void PYH(int id,int uid,String token);
+
+        //地址展示
+        void PSubmissionDZ(int id,String token);
+        void PSubmissionTime();
+        void PSubmissionInfo(int id ,int uid,String token,int rid,int cid, int aid);
+        void PSubmissionTiJiao(int id ,int uid,String token,int rid,int cid, int aid,String info,int zid ,String time);
+
+
+        //购物车
+        void PShoppingFragment(int id,String token);
+        void PShoppingDel(int id,int uid,String token);
+
+
+
+        //订单
+        void POrderFragment(int id,String token);
+        void POrderMyView(int id,String token,int order,int score,String info);
+
+        //我的页面我的信息
+        void PMyInfo(int id,String token);
+        //我的页面我的详细信息
+        void PMyInfozhe(int id,String token);
+        ///修改性别
+        void PMyInfozhesex(int id,String token,int sex);
+        //我的页面修改名称
+        void PMyShezhiName(int id,String token,String nickname);
+        //我的页面设置支付密码
+        void PMyShezhiPwd(int id,String token,int code,String password, String sure_password);
+        //我的页面地址列表
+        void PMyDz(int id,String token);
+        //添加地址
+        void PAddDz(int id,String token,String name,String phone,String weixin,int province,int city,int district
+                ,String address,int aid,String lon,String lat);
+        //添加地址中的城市
+        void PAddDzSSQ();
+        void PMyScData(int id,String token,String lon,String lat);
+        void PMyScDataDel(int id, String token, int mid);
+
+        void PMyTicketHBcData(int id, String token, int type);
+        void PMyTicketKQcData(int id, String token, int type);
+
+
+
+        void PMySocket(int id, String token);
     }
     interface MyView{
         interface MainActivity{
@@ -45,13 +102,101 @@ public interface MyContract {
             void ShowHomePageDz(Object object);
             void ShowHomePageEight(Object object);
             void ShowHomePageBanner(Object object);
+            void ShowHomePageT(Object object);
+            void ShowHomePageSan(Object object);
         }
         interface HomepageGoodsActivity{
             void ShowHomePageGoods(Object object);
+            void ShowHomePageGoodsCar(Object object);
         }
         interface HomeGoodsFragment{
             void ShowHomePageGoodsF(Object object);
             void ShowHomePageGoodsL(Object object);
+            void ShowHomePageGoods(Object object);
+        }
+        //   8  图
+        interface HomePageOnclickEightActivity{
+            void ShowHomePageOnclickEight(Object object);
+        }
+
+
+
+        interface SubmissionHBActivity{
+            void ShowSubmissionHB(Object object);
+
+        }
+        interface SubmissionYHActivity{
+            void ShowSubmissionYH(Object object);
+        }
+        interface SubmissionDZActivity{
+            void ShowSubmissionDZ(Object object);
+        }
+        //提交订单页面
+        interface HomeGoodsSubmissionActivity{
+            void ShowSubmissionTime(Object object);
+            void ShowSubmissionInfo(Object object);
+            void ShowSubmissionTiJiao(Object object);
+        }
+        interface ShoppingFragment{
+            void ShowShoppingData(Object object);
+            void ShowShoppingDataDel(Object object);
+        }
+
+
+
+
+        //订单
+        interface OrderFragment{
+            void ShowOrderFragment(Object object);
+        }
+
+        //订单评价
+        interface OrderMyViewz{
+            void ShowOrderMyView(Object object);
+        }
+
+        //我的页面
+        interface MyFragment{
+            void ShowMyInfo(Object object);
+        }
+        //我的设置页面
+        interface MySheZhiActivity{
+            void ShowMySheZhiif(Object object);
+            void ShowMySheZhiSex(Object object);
+        }
+        //我的设置姓名页面
+        interface MySheZhiNameActivity{
+            void ShowMyShezhiName(Object object);
+        }
+        //设置密码
+        interface MySheZhiPwdActivity{
+            void ShowMySheZhiPwd(Object object);
+        }
+        //我的页面设置地址
+        interface MyDzActivity{
+            void ShowMyDz(Object object);
+        }
+        //我的页面设置地址
+        interface MyDzAddActivity{
+            void ShowAddDz(Object object);
+            void ShowAddDzSSQ(Object object);
+        }
+        //我的页面设置地址
+        interface MyScActivity{
+            void ShowMyScData(Object object);
+            void PMyScDataDel(Object object);
+        }
+        //我的页面设置地址
+        interface MyTicketHBFragment{
+            void ShowMyTicketHBcData(Object object);
+        }
+        //我的页面设置地址
+        interface MyTicketKQFragment{
+            void ShowMyTicketKQcData(Object object);
+        }
+        //客服聊天
+        interface HomePageMessageCustomer{
+            void ShowSocket(Object object);
         }
     }
 }
