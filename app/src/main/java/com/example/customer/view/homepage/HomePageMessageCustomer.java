@@ -105,7 +105,9 @@ public class HomePageMessageCustomer extends AppCompatActivity implements MyCont
                     OutputStream os = socket.getOutputStream();
                     //写入要发送给服务器的数据
 
-                    String bild = "{'type':'bind','uid':'2'}";
+                    //var bild = '{"type":"bind","uid":"1"}';
+
+                    String bild = "{'type':'bind','uid':'" +MainActivity.user_id+"'}";
 
                     String s1 = new String(bild.getBytes(),"UTF-8");
                     Log.e("聊天Socket", s1);
@@ -124,7 +126,8 @@ public class HomePageMessageCustomer extends AppCompatActivity implements MyCont
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            //这里更新UI
+                            textView.setText(sb);
+                            Log.e("聊天Socket", sb+"");
                         }
                     });
                     //3、关闭IO资源（注：实际开发中需要放到finally中）
@@ -138,7 +141,13 @@ public class HomePageMessageCustomer extends AppCompatActivity implements MyCont
                 }
             }
         }.start();
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String s1 = et.getText().toString();
 
+            }
+        });
 
     }
     public void ShowDialog(String msg) {
