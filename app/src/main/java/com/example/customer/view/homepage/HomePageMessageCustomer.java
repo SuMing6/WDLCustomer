@@ -14,9 +14,11 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -68,6 +70,8 @@ public class HomePageMessageCustomer extends AppCompatActivity implements MyCont
         super.onCreate(savedInstanceState);
         XNAJ();
         setContentView(R.layout.activity_home_page_message_customer);
+
+
         //返回
         back();
         //信息
@@ -229,6 +233,7 @@ public class HomePageMessageCustomer extends AppCompatActivity implements MyCont
             actionBar.hide();
         }
     }
+
 
 
 }

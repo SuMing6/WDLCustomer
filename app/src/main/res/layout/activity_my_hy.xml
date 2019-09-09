@@ -83,6 +83,7 @@
             android:layout_marginTop="@dimen/dp_9"
             >
             <EditText
+                android:id="@+id/my_yq_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_24"

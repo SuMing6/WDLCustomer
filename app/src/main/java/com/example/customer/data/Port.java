@@ -61,6 +61,7 @@ public class Port {
     public static String MySheZhiName="api/user/set_user_nick_name\n";
     //设置密码
     public static String MySheZhiPwd="api/user/set_user_password\n";
+    public static String MySheZhiTX="api/user/set_user_head_img\n";
     //我的地址列表
     public static String MyDz="api/user/post_user_address_list\n";
     public static String AddDz="api/user/user_addr_add\n";

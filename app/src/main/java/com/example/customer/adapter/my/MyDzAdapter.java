@@ -59,6 +59,12 @@ public class MyDzAdapter extends RecyclerView.Adapter<MyDzAdapter.holder> {
         } else {
             holder.button.setChecked(false);
         }
+        holder.bj.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setOnClickItem.onGreat(dataBeans.get(position).getId());
+            }
+        });
 
     }
 
@@ -76,8 +82,8 @@ public class MyDzAdapter extends RecyclerView.Adapter<MyDzAdapter.holder> {
     }
 
     class holder extends RecyclerView.ViewHolder {
-        TextView name,phone,xx ;
-        LinearLayout linearLayout ;
+        TextView name,phone,xx ,bj ;
+        LinearLayout linearLayout ,linearLayout1;
         RadioButton button;
         public holder(View itemView) {
             super(itemView);
@@ -86,6 +92,7 @@ public class MyDzAdapter extends RecyclerView.Adapter<MyDzAdapter.holder> {
             xx = itemView.findViewById(R.id.adapter_my_dz_xx);
             linearLayout = itemView.findViewById(R.id.adapter_my_dz_LinearLayout);
             button = itemView.findViewById(R.id.adapter_my_dz_moren);
+            bj = itemView.findViewById(R.id.adapter_my_dz_bj);
         }
     }
 }

@@ -20,6 +20,7 @@ import com.example.customer.activity.PasswordJiami;
 import com.example.customer.bean.UserInfoBean;
 import com.example.customer.contract.MyContract;
 import com.example.customer.presenter.MyPresenter;
+import com.example.customer.view.homepage.HomePageMessageCustomer;
 import com.example.customer.view.my.MyDzActivity;
 import com.example.customer.view.my.MyHyActivity;
 import com.example.customer.view.my.MyMoneyActivity;
@@ -27,6 +28,7 @@ import com.example.customer.view.my.MyScActivity;
 import com.example.customer.view.my.MySheZhiActivity;
 import com.example.customer.view.my.MyTicketActivity;
 import com.example.customer.view.my.MyWmActivity;
+import com.example.customer.view.my.MyYYActivity;
 import com.example.customer.view.my.MyYjActivity;
 import com.facebook.drawee.view.SimpleDraweeView;
 
@@ -139,6 +141,7 @@ public class MyFragment extends Fragment implements MyContract.MyView.MyFragment
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), MyHyActivity.class);
+                intent.putExtra("share",userInfoBean.getData().getShare());
                 startActivity(intent);
             }
         });
@@ -149,7 +152,8 @@ public class MyFragment extends Fragment implements MyContract.MyView.MyFragment
         relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(getContext(), MyYYActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -159,7 +163,8 @@ public class MyFragment extends Fragment implements MyContract.MyView.MyFragment
         relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(getContext(), HomePageMessageCustomer.class);
+                startActivity(intent);
             }
         });
     }
@@ -176,11 +181,13 @@ public class MyFragment extends Fragment implements MyContract.MyView.MyFragment
     }
 
     private void wm() {
-        RelativeLayout relativeLayout = view.findViewById(R.id.my_RelativeLayout_wm);
+        final RelativeLayout relativeLayout = view.findViewById(R.id.my_RelativeLayout_wm);
         relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), MyWmActivity.class);
+                intent.putExtra("logo",userInfoBean.getData().getLogo());
+                intent.putExtra("about",userInfoBean.getData().getAbout());
                 startActivity(intent);
             }
         });

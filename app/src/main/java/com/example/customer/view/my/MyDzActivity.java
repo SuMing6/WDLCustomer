@@ -56,7 +56,12 @@ public class MyDzActivity extends Activity implements MyContract.MyView.MyDzActi
 
         adapter = new MyDzAdapter(this,dataBeans);
         recyclerView.setAdapter(adapter);
+        adapter.setSetOnClickItem(new MyDzAdapter.setOnClickItem() {
+            @Override
+            public void onGreat(int eid) {
 
+            }
+        });
 
     }
 

@@ -23,6 +23,7 @@ import com.example.customer.bean.MyScDataBean;
 import com.example.customer.bean.MySheZhiNameBean;
 import com.example.customer.bean.MySheZhiPwdBean;
 import com.example.customer.bean.MySheZhiSexBean;
+import com.example.customer.bean.MySheZhiTXBean;
 import com.example.customer.bean.MySocketBean;
 import com.example.customer.bean.MyTicketHbBean;
 import com.example.customer.bean.MyTicketKqBean;
@@ -44,6 +45,8 @@ import com.example.customer.model.MyModel;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import okhttp3.MultipartBody;
 
 public class MyPresenter<T> implements MyContract.MyPresenter {
 
@@ -629,6 +632,24 @@ public class MyPresenter<T> implements MyContract.MyPresenter {
             }
         });
     }
+
+    @Override
+    public void ShowMySheZhiTouxiang(int id, String token, MultipartBody.Part file) {
+        final MyContract.MyView.MySheZhiActivity mySheZhiActivity = (MyContract.MyView.MySheZhiActivity) t;
+        map.put("id", String.valueOf(id));
+        map.put("token",token);
+        myModel.doPTxPost(Port.MySheZhiTX, MySheZhiTXBean.class, map,file, new MyModel.MyCallBack() {
+            @Override
+            public void success(Object o) {
+                mySheZhiActivity.ShowMySheZhiTouxiang(o);
+            }
+            @Override
+            public void onError(Object o) {
+
+            }
+        });
+    }
+
     //我的页面地址列表
     @Override
     public void PMyDz(int id, String token) {

@@ -63,6 +63,7 @@
                     android:layout_height="34dp"
                     android:hint="在这里输入消息内容"
                     android:layout_weight="9"
+                    android:windowSoftInputMode="adjustResize"
                     android:background="@drawable/shape_homepage_edittext"/>
                 <ImageView
                     android:layout_width="@dimen/dp_20"

@@ -9,5 +9,6 @@
     <string name="rw">任务</string>
     <string name="mt">我的</string>
     <string name="myrw">我的任务</string>
-    <string name="title_activity_submission_yh">SubmissionYHActivity</string>
+    <string name="my_yy_cn">中文</string>
+    <string name="my_yy_JPZ">柬埔寨</string>
 </resources>

@@ -31,6 +31,9 @@ public class MyHyActivity extends AppCompatActivity {
         back();
         //点击邀请好友
         yqhy();
+        String share = getIntent().getStringExtra("share");
+        TextView textView = findViewById(R.id.my_yq_text);
+        textView.setText(share);
 
 
     }

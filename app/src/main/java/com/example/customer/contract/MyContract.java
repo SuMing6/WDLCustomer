@@ -3,10 +3,13 @@ package com.example.customer.contract;
 
 import java.util.Map;
 
+import okhttp3.MultipartBody;
+
 public interface MyContract {
     interface MyModel{
         void doGet(String url, Class cls, Map<String, String> map, com.example.customer.model.MyModel.MyCallBack myCallBack);
         void doPost(String url, Class cls, Map<String, String> map, com.example.customer.model.MyModel.MyCallBack myCallBack);
+        void doPTxPost(String url, Class cls, Map<String, String> map, MultipartBody.Part file, com.example.customer.model.MyModel.MyCallBack myCallBack);
     }
     interface MyPresenter{
         //验证码
@@ -71,6 +74,7 @@ public interface MyContract {
         void PMyShezhiName(int id,String token,String nickname);
         //我的页面设置支付密码
         void PMyShezhiPwd(int id,String token,int code,String password, String sure_password);
+        void ShowMySheZhiTouxiang(int id, String token, MultipartBody.Part file);
         //我的页面地址列表
         void PMyDz(int id,String token);
         //添加地址
@@ -163,6 +167,7 @@ public interface MyContract {
         interface MySheZhiActivity{
             void ShowMySheZhiif(Object object);
             void ShowMySheZhiSex(Object object);
+            void ShowMySheZhiTouxiang(Object object);
         }
         //我的设置姓名页面
         interface MySheZhiNameActivity{

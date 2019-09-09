@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/popupwindow_my_shezhi_toux_paizhao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="拍照"
+        android:textSize="@dimen/dp_16"
+        android:gravity="center"
+        android:padding="@dimen/dp_20"/>
+    <TextView
+        android:id="@+id/popupwindow_my_shezhi_toux_pic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="图片"
+        android:textSize="@dimen/dp_16"
+        android:gravity="center"
+        android:padding="@dimen/dp_20"/>
+    <TextView
+        android:id="@+id/popupwindow_my_shezhi_toux_quxiao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="取消"
+        android:textSize="@dimen/dp_16"
+        android:gravity="center"
+        android:padding="@dimen/dp_20"/>
+</LinearLayout>

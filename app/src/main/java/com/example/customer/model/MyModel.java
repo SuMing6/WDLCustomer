@@ -12,6 +12,7 @@ import java.util.Map;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
+import okhttp3.MultipartBody;
 import okhttp3.ResponseBody;
 
 public class MyModel implements MyContract.MyModel {
@@ -63,6 +64,31 @@ public class MyModel implements MyContract.MyModel {
                                }
                            });
     }
+
+    @Override
+    public void doPTxPost(String url, final Class cls, Map<String, String> map, MultipartBody.Part file, final MyCallBack myCallBack) {
+        this.myCallBack = myCallBack;
+        RetrofitUtil.getRetrofitUtil().getRetrofit(Api.class)
+                .requestTPost(url,map,file)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<ResponseBody>() {
+                    @Override
+                    public void accept(ResponseBody responseBody) throws Exception {
+                        Gson gson = new Gson();
+                        Object o = gson.fromJson(responseBody.string(), cls);
+                        myCallBack.success(o);
+                        Log.e("你看看+mp",o+"");
+                    }
+                    //  错误   io.reactivex.exceptions.OnErrorNotImplementedException: java.lang.IllegalStateException: Expected BEGIN_ARRAY but was STRING at line 1 column 32 path $.data
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        throwable.printStackTrace();
+                    }
+                });
+    }
+
 
     public interface MyCallBack{
         void success(Object o);

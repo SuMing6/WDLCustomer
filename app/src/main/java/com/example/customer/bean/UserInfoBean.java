@@ -40,6 +40,7 @@ public class UserInfoBean {
     }
 
     public static class DataBean {
+
         private int id;
         private String headimg;
         private String nickname;
@@ -47,6 +48,9 @@ public class UserInfoBean {
         private String phone;
         private int sex;
         private String mi_phone;
+        private String logo;
+        private String about;
+        private String share;
 
         public int getId() {
             return id;
@@ -102,6 +106,30 @@ public class UserInfoBean {
 
         public void setMi_phone(String mi_phone) {
             this.mi_phone = mi_phone;
+        }
+
+        public String getLogo() {
+            return logo;
+        }
+
+        public void setLogo(String logo) {
+            this.logo = logo;
+        }
+
+        public String getAbout() {
+            return about;
+        }
+
+        public void setAbout(String about) {
+            this.about = about;
+        }
+
+        public String getShare() {
+            return share;
+        }
+
+        public void setShare(String share) {
+            this.share = share;
         }
     }
 }

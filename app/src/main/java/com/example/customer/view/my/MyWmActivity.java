@@ -1,5 +1,6 @@
 package com.example.customer.view.my;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.support.v7.app.ActionBar;
@@ -11,6 +12,7 @@ import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.example.customer.R;
+import com.facebook.drawee.view.SimpleDraweeView;
 
 public class MyWmActivity extends AppCompatActivity {
 
@@ -18,7 +20,15 @@ public class MyWmActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         XNAJ();
+
+
         setContentView(R.layout.activity_my_wm);
+        String logo = getIntent().getStringExtra("logo");
+        String about = getIntent().getStringExtra("about");
+        SimpleDraweeView simpleDraweeView = findViewById(R.id.my_wm_imager);
+        simpleDraweeView.setImageURI(logo);
+        TextView textView = findViewById(R.id.my_wm_text);
+        textView.setText(about);
         //返回
         back();
     }

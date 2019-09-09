@@ -110,6 +110,7 @@ dependencies {
     implementation 'com.amap.api:3dmap:latest.integration'
     implementation 'com.amap.api:location:latest.integration'
     implementation files('src/main/jniLibs/BaiduLBS_Android.jar')
+
 }
 tasks.withType(JavaCompile) {
     options.encoding = "UTF-8"

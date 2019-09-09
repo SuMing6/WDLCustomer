@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
+    android:id="@+id/adapter_my_dz_LinearLayoutaa"
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -75,6 +76,7 @@
                 android:textSize="@dimen/dp_12"
                 android:textColor="#333333"
                 android:layout_alignParentRight="true"
+                android:padding="@dimen/dp_20"
                 android:gravity="center"/>
         </RelativeLayout>
     </LinearLayout>
