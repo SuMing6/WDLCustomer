@@ -135,10 +135,12 @@ public class HomepageGoodssousuoActivity extends AppCompatActivity implements My
                         zs= Integer.parseInt(sum.getText().toString());
                         if (zs!=0){
                             zs = zs-1;
-                            sum.setText(zs+"");/*
+                            sum.setText(zs+"");
+                            /*
                             mo= Double.parseDouble(money.getText().toString());
                             aa = zs*mo;
-                            money.setText(aa+"");*/
+                            money.setText(aa+"");
+                            */
                         }
                     }
                 });

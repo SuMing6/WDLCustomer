@@ -260,6 +260,7 @@ public class HomeGoodsFragment extends Fragment implements MyContract.MyView.Hom
         if (addSoppingCarBean.getCode()==0){
             Toast.makeText(getContext(),""+addSoppingCarBean.getMsg(),Toast.LENGTH_SHORT).show();
             popupWindow.dismiss();
+            onResume();
         }
     }
 

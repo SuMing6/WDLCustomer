@@ -41,8 +41,9 @@
         android:layout_height="@dimen/dp_1"
         android:background="#F3F3F3"/>
     <TextView
+        android:id="@+id/popup_TextView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:text="取消"
         android:gravity="center"
         android:textColor="#333333"

@@ -164,6 +164,13 @@ public class HomeGoodsSubmissionActivity extends Activity implements MyContract.
         screenHeight = display.getHeight();
 
         inflate = LayoutInflater.from(this).inflate(R.layout.popupwindow_submission, null);
+        TextView textViewqq = inflate.findViewById(R.id.popup_TextView);
+        textViewqq.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                popupWindow.dismiss();
+            }
+        });
 
         relativeLayout.setOnClickListener(new View.OnClickListener() {
             final LinearLayout linearLayout = inflate.findViewById(R.id.LinearLayout_cccc);

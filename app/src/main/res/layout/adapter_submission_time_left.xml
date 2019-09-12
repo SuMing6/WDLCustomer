@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".adapter.HomeGoodsLeftAdapter"
-    android:paddingBottom="@dimen/dp_2"
+    android:paddingBottom="@dimen/dp_0_5"
     android:id="@+id/adapter_subminssion_left_RelativeLayout"
     android:background="#DFDFDF"
     >
