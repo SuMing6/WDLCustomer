@@ -18,12 +18,11 @@
         android:background="#fff"
         android:paddingBottom="@dimen/dp_9"
         >
-        <TextView
+        <ImageView
             android:id="@+id/my_yj_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="＜"
-            android:textSize="@dimen/dp_14"
+            android:layout_width="@dimen/dp_10"
+            android:layout_height="@dimen/dp_14"
+            android:background="@drawable/back"
             android:layout_marginTop="@dimen/dp_4"
             android:layout_marginLeft="@dimen/dp_14"/>
         <TextView
@@ -68,6 +67,7 @@
         android:textColor="#323131"/>
     
     <ImageView
+        android:id="@+id/my_yj_ImageView"
         android:layout_width="@dimen/dp_58"
         android:layout_height="@dimen/dp_58"
         android:src="@mipmap/my_yj_image"
@@ -76,6 +76,7 @@
         android:layout_marginTop="@dimen/dp_16"
         />
     <Button
+        android:id="@+id/my_yj_Button"
         android:layout_width="@dimen/dp_232"
         android:layout_height="@dimen/dp_37"
         android:text="提交"
@@ -83,6 +84,12 @@
         android:textColor="#fff"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/dp_56"/>
+    <RelativeLayout
+        android:id="@+id/my_yj_bumm"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </RelativeLayout>
 
 
 </LinearLayout>

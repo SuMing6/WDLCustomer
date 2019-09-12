@@ -1,22 +1,16 @@
 package com.example.customer.fragment;
 
-import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.KeyCharacterMap;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -26,12 +20,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.amap.api.location.AMapLocation;
-import com.amap.api.location.AMapLocationClient;
-import com.amap.api.location.AMapLocationClientOption;
-import com.amap.api.location.AMapLocationListener;
 import com.bumptech.glide.Glide;
 import com.example.customer.R;
 import com.example.customer.activity.MainActivity;
@@ -40,27 +29,28 @@ import com.example.customer.adapter.HomePageNearbyAdapter;
 import com.example.customer.bean.EightBean;
 import com.example.customer.bean.HomaPageDzBean;
 import com.example.customer.bean.HomeBannerBean;
-import com.example.customer.bean.HomeGoodsBean;
 import com.example.customer.bean.HomePageSanBean;
 import com.example.customer.bean.HomeTBean;
 import com.example.customer.bean.NearbyBean;
 import com.example.customer.contract.MyContract;
 import com.example.customer.presenter.MyPresenter;
+import com.example.customer.view.homegoods.HomeSousuoLsActivity;
 import com.example.customer.view.homepage.HomePageMessageActivity;
 import com.example.customer.view.homepage.HomePageOnclickEightActivity;
 import com.example.customer.view.homepage.HomepageGoodsActivity;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.youth.banner.Banner;
+import com.youth.banner.listener.OnBannerListener;
 import com.youth.banner.loader.ImageLoader;
 
-import java.net.URI;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-public class HomePageFragment extends Fragment implements MyContract.MyView.HomePageFragment{
+import io.reactivex.functions.Consumer;
+import io.reactivex.plugins.RxJavaPlugins;
+
+public class HomePageFragment extends Fragment implements MyContract.MyView.HomePageFragment {
 
     public static View view;
 
@@ -80,6 +70,7 @@ public class HomePageFragment extends Fragment implements MyContract.MyView.Home
     private SimpleDraweeView simpleDraweeView3;
     private SimpleDraweeView simpleDraweeView;
     private NestedScrollView scrollView;
+    private HomeBannerBean homeBannerBean;
 
     @Nullable
     @Override
@@ -94,7 +85,7 @@ public class HomePageFragment extends Fragment implements MyContract.MyView.Home
 
         myPresenter.PHomepageDz(MainActivity.province,MainActivity.city,MainActivity.district);
 
-        //Log.e("省市区",MainActivity.province+""+MainActivity.city+""+MainActivity.district);
+        Log.e("省市区",MainActivity.province+""+MainActivity.city+""+MainActivity.district);
         //滑动冲突
         huaDong();
         //定位
@@ -103,26 +94,32 @@ public class HomePageFragment extends Fragment implements MyContract.MyView.Home
         editText();
         //消息页面
         message();
-        //附近商家
-        fujinshangjia();
+
+//附近商家
+        fujinshangjia();//图片
+        pic();
         //首页8图
         eight();
         //首页轮播
         banner();
         //商品详情
         goods();
-        //图片
-        pic();
 
         myPresenter.PHomepageSan();
         //tupian初始化
         init();
 
+        RxJavaPlugins.setErrorHandler(new Consumer<Throwable>() {
+            @Override
+            public void accept(Throwable throwable) {
+                //异常处理
+            }
+        });
+
     }
 
     private void pic() {
         myPresenter.PHomepageT(3);
-
     }
 
     private void init() {
@@ -148,6 +145,12 @@ public class HomePageFragment extends Fragment implements MyContract.MyView.Home
         banner = view.findViewById(R.id.homepage_Banner);
 
         myPresenter.PHomepageBanner(2);
+        banner.setOnBannerListener(new OnBannerListener() {
+            @Override
+            public void OnBannerClick(int position) {
+                Log.i("tag", "你点了第"+position+"张轮播图");
+            }
+        });
     }
 
     private void eight() {
@@ -171,8 +174,7 @@ public class HomePageFragment extends Fragment implements MyContract.MyView.Home
     private void fujinshangjia() {
         XRecyclerView xRecyclerView = view.findViewById(R.id.homepage_XRecyclerView);
 
-        myPresenter.PHomepageNearby(MainActivity.longitude+"",MainActivity.latitude+"",province_id,city_id,area_id,0);
-        //Log.e("省市区",MainActivity.longitude+"经纬"+MainActivity.latitude+"--"+province_id+"--"+city_id+"--"+area_id);
+
 
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         manager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -195,6 +197,7 @@ public class HomePageFragment extends Fragment implements MyContract.MyView.Home
             }
 
         });*/
+
 
     }
 
@@ -225,10 +228,12 @@ public class HomePageFragment extends Fragment implements MyContract.MyView.Home
         //输入框获取焦点
         editText.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v) {/*
                 editText.setFocusable(true);
                 editText.setFocusableInTouchMode(true);
-                editText.requestFocus();
+                editText.requestFocus();*/
+                Intent intent = new Intent(getContext(), HomeSousuoLsActivity.class);
+                startActivity(intent);
             }
         });
     //点击软键盘外部，收起软键盘
@@ -277,7 +282,9 @@ public class HomePageFragment extends Fragment implements MyContract.MyView.Home
             city_id = homaPageDzBean.getInfo().getCity_id();
             area_id = homaPageDzBean.getInfo().getArea_id();
 
-            Log.e("省市区",province_id+"---"+city_id+"---"+area_id);
+            Log.e("省市区11",province_id+"---"+city_id+"---"+area_id);
+            myPresenter.PHomepageNearby(MainActivity.longitude+"",MainActivity.latitude+"",province_id,city_id,area_id,0);
+            Log.e("省市区",MainActivity.longitude+"经纬"+MainActivity.latitude+"--"+province_id+"---"+city_id+"---"+area_id);
         }
 
     }
@@ -294,10 +301,9 @@ public class HomePageFragment extends Fragment implements MyContract.MyView.Home
 
     @Override
     public void ShowHomePageBanner(Object object) {
-        HomeBannerBean homeBannerBean = (HomeBannerBean) object;
+        homeBannerBean = (HomeBannerBean) object;
         if (homeBannerBean.getCode() == 0){
             //Log.e("数据v",o.toString());
-            beanList.clear();
             beanList.addAll(homeBannerBean.getData());
             for (int i = 0; i < beanList.size(); i++) {
                 integerList.add(beanList.get(i).getPic());
@@ -329,11 +335,35 @@ public class HomePageFragment extends Fragment implements MyContract.MyView.Home
 
     @Override
     public void ShowHomePageSan(Object object) {
-        HomePageSanBean homePageSanBean = (HomePageSanBean) object;
+        final HomePageSanBean homePageSanBean = (HomePageSanBean) object;
         if (homePageSanBean.getCode()==0){
             simpleDraweeView1.setImageURI(homePageSanBean.getData().get(0).getImage());
             simpleDraweeView2.setImageURI(homePageSanBean.getData().get(1).getImage());
             simpleDraweeView3.setImageURI(homePageSanBean.getData().get(2).getImage());
+            simpleDraweeView1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(getContext(),HomePageOnclickEightActivity.class);
+                    intent.putExtra("id",homePageSanBean.getData().get(0).getId());
+                    startActivity(intent);
+                }
+            });
+            simpleDraweeView2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(getContext(),HomePageOnclickEightActivity.class);
+                    intent.putExtra("id",homePageSanBean.getData().get(1).getId());
+                    startActivity(intent);
+                }
+            });
+            simpleDraweeView3.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(getContext(),HomePageOnclickEightActivity.class);
+                    intent.putExtra("id",homePageSanBean.getData().get(2).getId());
+                    startActivity(intent);
+                }
+            });
         }
     }
 
@@ -371,4 +401,13 @@ public class HomePageFragment extends Fragment implements MyContract.MyView.Home
         });
     }
 
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser) {
+            //相当于Fragment的onResume
+        } else {
+            //相当于Fragment的onPause
+        }
+    }
 }

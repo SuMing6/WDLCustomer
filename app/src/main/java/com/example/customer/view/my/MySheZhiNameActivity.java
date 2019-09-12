@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,7 +24,7 @@ import com.example.customer.presenter.MyPresenter;
 
 public class MySheZhiNameActivity extends AppCompatActivity implements MyContract.MyView.MySheZhiNameActivity {
 
-    private TextView back;
+    private ImageView back;
     private TextView ok;
     private EditText name;
     MyContract.MyPresenter myPresenter = new MyPresenter<>(this);

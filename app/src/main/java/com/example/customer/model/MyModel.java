@@ -7,6 +7,7 @@ import com.example.customer.util.Api;
 import com.example.customer.util.RetrofitUtil;
 import com.google.gson.Gson;
 
+import java.io.File;
 import java.util.Map;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -66,10 +67,10 @@ public class MyModel implements MyContract.MyModel {
     }
 
     @Override
-    public void doPTxPost(String url, final Class cls, Map<String, String> map, MultipartBody.Part file, final MyCallBack myCallBack) {
+    public void doPTxPost(String urla, final Class cls, int id, String token , String content , MultipartBody.Part file, final MyCallBack myCallBack) {
         this.myCallBack = myCallBack;
         RetrofitUtil.getRetrofitUtil().getRetrofit(Api.class)
-                .requestTPost(url,map,file)
+                .requestTPost(urla,id,token,content,file)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<ResponseBody>() {
@@ -88,6 +89,7 @@ public class MyModel implements MyContract.MyModel {
                     }
                 });
     }
+
 
 
     public interface MyCallBack{

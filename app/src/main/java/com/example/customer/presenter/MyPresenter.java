@@ -4,20 +4,29 @@ import android.util.Log;
 
 import com.example.customer.bean.AddDzBean;
 import com.example.customer.bean.AddSoppingCarBean;
+import com.example.customer.bean.BackLoginBean;
 import com.example.customer.bean.CarInfoTiJiaoBean;
+import com.example.customer.bean.DetailsBean;
+import com.example.customer.bean.DianDanBean;
 import com.example.customer.bean.DzBean;
 import com.example.customer.bean.EightBean;
+import com.example.customer.bean.EvaluateDataBean;
 import com.example.customer.bean.HomaPageDzBean;
 import com.example.customer.bean.HomeBannerBean;
 import com.example.customer.bean.HomeCarInforBean;
 import com.example.customer.bean.HomeGoodsBean;
 import com.example.customer.bean.HomeGoodsCarBean;
 import com.example.customer.bean.HomeGoodsListBean;
+import com.example.customer.bean.HomePageGoodSousuoBean;
+import com.example.customer.bean.HomePageGoodSousuoCarBean;
 import com.example.customer.bean.HomePageSanBean;
+import com.example.customer.bean.HomeSouSuoBean;
+import com.example.customer.bean.HomeSousuoLsBean;
 import com.example.customer.bean.HomeTBean;
 import com.example.customer.bean.HomepageOnclickEightBean;
 import com.example.customer.bean.LoginBean;
 import com.example.customer.bean.MyDzBean;
+import com.example.customer.bean.MyDzMRBean;
 import com.example.customer.bean.MyScAddBean;
 import com.example.customer.bean.MyScDataBean;
 import com.example.customer.bean.MySheZhiNameBean;
@@ -27,16 +36,19 @@ import com.example.customer.bean.MySheZhiTXBean;
 import com.example.customer.bean.MySocketBean;
 import com.example.customer.bean.MyTicketHbBean;
 import com.example.customer.bean.MyTicketKqBean;
+import com.example.customer.bean.MyYjBean;
 import com.example.customer.bean.NearbyBean;
 import com.example.customer.bean.OrderBean;
 import com.example.customer.bean.OrderMyViewBean;
 import com.example.customer.bean.RegisterBean;
 import com.example.customer.bean.SanBean;
+import com.example.customer.bean.ShezhiYZMBean;
 import com.example.customer.bean.ShoppingBean;
 import com.example.customer.bean.ShoppingDelBean;
 import com.example.customer.bean.SubmissionHBBean;
 import com.example.customer.bean.SubmissionTimeBean;
 import com.example.customer.bean.SubmissionYHBean;
+import com.example.customer.bean.TongzhiBean;
 import com.example.customer.bean.UserInfoBean;
 import com.example.customer.bean.YAMBean;
 import com.example.customer.contract.MyContract;
@@ -225,10 +237,49 @@ public class MyPresenter<T> implements MyContract.MyPresenter {
     @Override
     public void PHomepageSan() {
         final MyContract.MyView.HomePageFragment homePageFragment = (MyContract.MyView.HomePageFragment) t;
+
         myModel.doGet(Port.HomePageSan, HomePageSanBean.class, map, new MyModel.MyCallBack() {
             @Override
             public void success(Object o) {
                 homePageFragment.ShowHomePageSan(o);
+            }
+            @Override
+            public void onError(Object o) {
+
+            }
+        });
+    }
+
+    @Override
+    public void PHomeSousuo(String lon, String lat, int province, int city, int area, int start, String keyword, int id) {
+        final MyContract.MyView.HomeSousuoActivity homePageFragment = (MyContract.MyView.HomeSousuoActivity) t;
+        map.put("lon", lon);
+        map.put("lat", lat);
+        map.put("province", String.valueOf(province));
+        map.put("city", String.valueOf(city));
+        map.put("area", String.valueOf(area));
+        map.put("keyword", String.valueOf(keyword));
+        map.put("id", String.valueOf(id));
+        myModel.doPost(Port.HomeSouSuo, HomeSouSuoBean.class, map, new MyModel.MyCallBack() {
+            @Override
+            public void success(Object o) {
+                homePageFragment.ShowHomeSousuo(o);
+            }
+            @Override
+            public void onError(Object o) {
+
+            }
+        });
+    }
+
+    @Override
+    public void PHomeSousuols(int id) {
+        final MyContract.MyView.HomeSousuoLsActivity homePageFragment = (MyContract.MyView.HomeSousuoLsActivity) t;
+        map.put("id", String.valueOf(id));
+        myModel.doGet(Port.HomeSouSuoLs, HomeSousuoLsBean.class, map, new MyModel.MyCallBack() {
+            @Override
+            public void success(Object o) {
+                homePageFragment.ShowHomeSousuoLs(o);
             }
             @Override
             public void onError(Object o) {
@@ -327,6 +378,44 @@ public class MyPresenter<T> implements MyContract.MyPresenter {
     }
 
     @Override
+    public void PHomePageGoodsSousuo(int id, String keyword) {
+        final MyContract.MyView.HomepageGoodssousuoActivity homepageGoodsActivity = (MyContract.MyView.HomepageGoodssousuoActivity) t;
+        map.put("id", String.valueOf(id));
+        map.put("keyword", String.valueOf(keyword));
+        myModel.doPost(Port.HomePageGoodsSousuo, HomePageGoodSousuoBean.class, map, new MyModel.MyCallBack() {
+            @Override
+            public void success(Object o) {
+                homepageGoodsActivity.ShowHomePageGoodsSousuo(o);
+            }
+            @Override
+            public void onError(Object o) {
+
+            }
+        });
+    }
+
+    @Override
+    public void PHomePageGoodsSousuoCar(int id, int gid, int sid, int num, int uid, String token) {
+        final MyContract.MyView.HomepageGoodssousuoActivity homepageGoodsActivity = (MyContract.MyView.HomepageGoodssousuoActivity) t;
+        map.put("id", String.valueOf(id));
+        map.put("gid", String.valueOf(gid));
+        map.put("sid", String.valueOf(sid));
+        map.put("num", String.valueOf(num));
+        map.put("uid", String.valueOf(uid));
+        map.put("token", String.valueOf(token));
+        myModel.doPost(Port.HomePageGoodsSousuocar, HomePageGoodSousuoCarBean.class, map, new MyModel.MyCallBack() {
+            @Override
+            public void success(Object o) {
+                homepageGoodsActivity.ShowHomePageGoodsSousuoCar(o);
+            }
+            @Override
+            public void onError(Object o) {
+
+            }
+        });
+    }
+
+    @Override
     public void ShowHomePageOnclickEight(String lon, String lat, int province, int city, int area, int start, int shop_cate, int cate_id, int delivery, int coupon, int order) {
         final MyContract.MyView.HomePageOnclickEightActivity homePageOnclickEightActivity = (MyContract.MyView.HomePageOnclickEightActivity) t;
         map.put("lon", String.valueOf(lon));
@@ -344,6 +433,38 @@ public class MyPresenter<T> implements MyContract.MyPresenter {
             @Override
             public void success(Object o) {
                 homePageOnclickEightActivity.ShowHomePageOnclickEight(o);
+            }
+            @Override
+            public void onError(Object o) {
+
+            }
+        });
+    }
+
+    @Override
+    public void PHomePageEvaluateData(int id) {
+        final MyContract.MyView.HomeEvaluateFragment homePageOnclickEightActivity = (MyContract.MyView.HomeEvaluateFragment) t;
+        map.put("id", String.valueOf(id));
+        myModel.doPost(Port.EvaluateData, EvaluateDataBean.class, map, new MyModel.MyCallBack() {
+            @Override
+            public void success(Object o) {
+                homePageOnclickEightActivity.ShowHomePageEvaluateData(o);
+            }
+            @Override
+            public void onError(Object o) {
+
+            }
+        });
+    }
+
+    @Override
+    public void PHomeDetailsData(int id) {
+        final MyContract.MyView.HomeDetailsFragment homePageOnclickEightActivity = (MyContract.MyView.HomeDetailsFragment) t;
+        map.put("id", String.valueOf(id));
+        myModel.doPost(Port.DetailsData, DetailsBean.class, map, new MyModel.MyCallBack() {
+            @Override
+            public void success(Object o) {
+                homePageOnclickEightActivity.HomeDetailsData(o);
             }
             @Override
             public void onError(Object o) {
@@ -608,7 +729,6 @@ public class MyPresenter<T> implements MyContract.MyPresenter {
             }
             @Override
             public void onError(Object o) {
-
             }
         });
     }
@@ -628,24 +748,56 @@ public class MyPresenter<T> implements MyContract.MyPresenter {
             }
             @Override
             public void onError(Object o) {
+            }
+        });
+    }
+
+    @Override
+    public void PMyShezhiYZM(String phone) {
+        final MyContract.MyView.MySheZhiPwdActivity  mainActivity = (MyContract.MyView.MySheZhiPwdActivity) t;
+        map.put("phone", phone);
+        myModel.doPost(Port.mainActivityY, ShezhiYZMBean.class, map, new MyModel.MyCallBack() {
+            @Override
+            public void success(Object o) {
+                mainActivity.ShowMySheZhiYZM(o);
+            }
+
+            @Override
+            public void onError(Object o) {
 
             }
         });
     }
 
     @Override
-    public void ShowMySheZhiTouxiang(int id, String token, MultipartBody.Part file) {
+    public void ShowMySheZhiTouxiang(int id, String token, String url) {
         final MyContract.MyView.MySheZhiActivity mySheZhiActivity = (MyContract.MyView.MySheZhiActivity) t;
         map.put("id", String.valueOf(id));
-        map.put("token",token);
-        myModel.doPTxPost(Port.MySheZhiTX, MySheZhiTXBean.class, map,file, new MyModel.MyCallBack() {
+        map.put("token", String.valueOf(token));
+        map.put("url", String.valueOf(url));
+        myModel.doPost(Port.MySheZhiTX, MySheZhiTXBean.class, map, new MyModel.MyCallBack() {
             @Override
             public void success(Object o) {
                 mySheZhiActivity.ShowMySheZhiTouxiang(o);
             }
             @Override
             public void onError(Object o) {
+            }
+        });
+    }
 
+    @Override
+    public void ShowMySheZhiOutLogin(int id, String token) {
+        final MyContract.MyView.MySheZhiActivity mySheZhiActivity = (MyContract.MyView.MySheZhiActivity) t;
+        map.put("id", String.valueOf(id));
+        map.put("token", String.valueOf(token));
+        myModel.doPost(Port.MySheZhiOut, BackLoginBean.class, map, new MyModel.MyCallBack() {
+            @Override
+            public void success(Object o) {
+                mySheZhiActivity.ShowMySheZhiOut(o);
+            }
+            @Override
+            public void onError(Object o) {
             }
         });
     }
@@ -660,6 +812,24 @@ public class MyPresenter<T> implements MyContract.MyPresenter {
             @Override
             public void success(Object o) {
                 MyDzActivity.ShowMyDz(o);
+            }
+            @Override
+            public void onError(Object o) {
+
+            }
+        });
+    }
+
+    @Override
+    public void PMyDzMR(int id, String token, int address_id) {
+        final MyContract.MyView.MyDzActivity MyDzActivity = (MyContract.MyView.MyDzActivity) t;
+        map.put("id", String.valueOf(id));
+        map.put("token",token);
+        map.put("address_id", String.valueOf(address_id));
+        myModel.doPost(Port.MyDzMR, MyDzMRBean.class, map, new MyModel.MyCallBack() {
+            @Override
+            public void success(Object o) {
+                MyDzActivity.ShowMyDzMR(o);
             }
             @Override
             public void onError(Object o) {
@@ -747,6 +917,21 @@ public class MyPresenter<T> implements MyContract.MyPresenter {
     }
 
     @Override
+    public void ShowMyYJ(int id, String token, String content, MultipartBody.Part file) {
+        final MyContract.MyView.MyYjActivity myYjActivity = (MyContract.MyView.MyYjActivity) t;
+        myModel.doPTxPost(Port.MyYj, MyYjBean.class,id,token,content,file, new MyModel.MyCallBack() {
+            @Override
+            public void success(Object o) {
+                myYjActivity.ShowMyYj(o);
+            }
+            @Override
+            public void onError(Object o) {
+
+            }
+        });
+    }
+
+    @Override
     public void PMyTicketHBcData(int id, String token, int type) {
         final MyContract.MyView.MyTicketHBFragment myScActivity = (MyContract.MyView.MyTicketHBFragment) t;
         map.put("id", String.valueOf(id));
@@ -791,6 +976,43 @@ public class MyPresenter<T> implements MyContract.MyPresenter {
             @Override
             public void success(Object o) {
                 homePageMessageCustomer.ShowSocket(o);
+            }
+            @Override
+            public void onError(Object o) {
+
+            }
+        });
+    }
+
+    @Override
+    public void PDianDan(int id, String token,int type) {
+        final MyContract.MyView.HomePageDingDan homePageDingDan = (MyContract.MyView.HomePageDingDan) t;
+        map.put("id", String.valueOf(id));
+        map.put("token",token);
+        map.put("type", String.valueOf(type));
+        myModel.doPost(Port.DianDan, DianDanBean.class, map, new MyModel.MyCallBack() {
+            @Override
+            public void success(Object o) {
+                homePageDingDan.ShowDianDan(o);
+                Log.e("订单",o+"");
+            }
+            @Override
+            public void onError(Object o) {
+
+            }
+        });
+    }
+
+    @Override
+    public void PTongZhi(int id, String token) {
+        final MyContract.MyView.HomePageMessageActivity homePageMessageActivity = (MyContract.MyView.HomePageMessageActivity) t;
+        map.put("id", String.valueOf(id));
+        map.put("token",token);
+        myModel.doPost(Port.TongZhi, TongzhiBean.class, map, new MyModel.MyCallBack() {
+            @Override
+            public void success(Object o) {
+                homePageMessageActivity.ShowTongZhi(o);
+                Log.e("订单",o+"");
             }
             @Override
             public void onError(Object o) {

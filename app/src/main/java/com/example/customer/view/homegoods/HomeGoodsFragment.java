@@ -83,6 +83,7 @@ public class HomeGoodsFragment extends Fragment implements MyContract.MyView.Hom
         //数据展示
         left();
         right();
+
         //判断是否拥有规格
         GG();
         //下面的购物车
@@ -174,6 +175,7 @@ public class HomeGoodsFragment extends Fragment implements MyContract.MyView.Hom
                         String s1 = sum.getText().toString();
                         myPresenter.PHomePageGoods(HomepageGoodsActivity.id ,gid,sid,Integer.parseInt(s1), MainActivity.user_id,passwordjiami);
                         //Log.e("啊大大",HomepageGoodsActivity.id+"--"+gid+"--"+sid+"--"+Integer.parseInt(s1)+"--"+MainActivity.user_id+"--"+passwordjiami);
+                        //myPresenter.PHomePageGoodsCar(MainActivity.user_id,passwordjiami,);
                     }
                 });
 
@@ -195,6 +197,7 @@ public class HomeGoodsFragment extends Fragment implements MyContract.MyView.Hom
     private void right() {
         right = view.findViewById(R.id.fragment_home_goods_right);
         right.setLayoutManager(new LinearLayoutManager(getContext()));
+
         myPresenter.PHomepageGoodsL(HomepageGoodsActivity.id,1);
 
         rightAdapter = new HomeGoodsRightAdapter(getActivity(),dataBeans);
@@ -234,6 +237,7 @@ public class HomeGoodsFragment extends Fragment implements MyContract.MyView.Hom
             if (homeGoodsBean.getData().getCate()!=null){
                 cateBeans.addAll(homeGoodsBean.getData().getCate());
             }
+            myPresenter.PHomepageGoodsL(HomepageGoodsActivity.id,cateBeans.get(0).getCate_id());
             leftAdapter.notifyDataSetChanged();
         }
     }
@@ -243,7 +247,6 @@ public class HomeGoodsFragment extends Fragment implements MyContract.MyView.Hom
         if (object!=null){
             goodsListBean1 = (HomeGoodsListBean) object;
             //Log.e("啊大大",""+ goodsListBean1.getData());
-
             if (goodsListBean1.getCode() == 0){
                 dataBeans.addAll(goodsListBean1.getData());
             }
@@ -260,11 +263,16 @@ public class HomeGoodsFragment extends Fragment implements MyContract.MyView.Hom
         }
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+    }
 
     @Override
     public void onPause() {
         super.onPause();
-        cateBeans.clear();
-        dataBeans.clear();
+        //cateBeans.clear();
+        //dataBeans.clear();
     }
 }

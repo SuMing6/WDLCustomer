@@ -17,6 +17,7 @@ import com.example.customer.fragment.HomePageFragment;
 import com.example.customer.fragment.MyFragment;
 import com.example.customer.fragment.OrderFragment;
 import com.example.customer.fragment.ShoppingFragment;
+import com.example.customer.util.EndApp;
 
 public class ShowActivity extends AppCompatActivity {
 
@@ -32,7 +33,7 @@ public class ShowActivity extends AppCompatActivity {
         setContentView(R.layout.activity_show);
         //页面展示
         show();
-
+        EndApp.getInstance().addActivity(this);
 
     }
 

@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.customer.R;
@@ -32,6 +33,13 @@ public class MyYYActivity extends AppCompatActivity {
         setContentView(R.layout.activity_my_yy);
         //点击切换
         click();
+        ImageView imageView = findViewById(R.id.my_yy_back);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
     }
 

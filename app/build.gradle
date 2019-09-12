@@ -2,6 +2,12 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.mob.sdk'
 
 android {
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to checkforerrorsinrelease builds,
+        // but continue the build even whenerrorsarefound:
+        abortOnError false
+    }
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
     defaultConfig {

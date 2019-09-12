@@ -52,7 +52,8 @@ public class RetrofitUtil {
         if (retrofit == null) {
             retrofit = new Retrofit.Builder()
                     .client(okHttpClient)
-                    .baseUrl("http://waimai.xiaoyingwu.cn/")
+                    //"http://waimai.xiaoyingwu.cn/"
+                    .baseUrl("http://192.168.8.137:8010/")
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();

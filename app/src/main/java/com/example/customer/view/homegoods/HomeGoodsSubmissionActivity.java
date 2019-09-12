@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
@@ -98,7 +99,7 @@ public class HomeGoodsSubmissionActivity extends Activity implements MyContract.
     }
 
     private void back() {
-        TextView textView = findViewById(R.id.home_goods_submission_back);
+        ImageView textView = findViewById(R.id.home_goods_submission_back);
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

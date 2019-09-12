@@ -8,17 +8,21 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.customer.R;
 import com.example.customer.activity.MainActivity;
 import com.example.customer.activity.PasswordJiami;
 import com.example.customer.adapter.my.MyDzAdapter;
 import com.example.customer.bean.MyDzBean;
+import com.example.customer.bean.MyDzMRBean;
 import com.example.customer.contract.MyContract;
 import com.example.customer.presenter.MyPresenter;
 
@@ -30,6 +34,7 @@ public class MyDzActivity extends Activity implements MyContract.MyView.MyDzActi
     private MyDzAdapter adapter;
     MyContract.MyPresenter myPresenter = new MyPresenter<>(this);
     List<MyDzBean.DataBean> dataBeans = new ArrayList<>();
+    private String passwordjiami;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,15 +56,16 @@ public class MyDzActivity extends Activity implements MyContract.MyView.MyDzActi
 
         String token = MainActivity.token;
         String passwjiemi = PasswordJiami.passwjiemi(token);
-        String passwordjiami = PasswordJiami.passwordjiami(passwjiemi);
-        myPresenter.PMyDz(MainActivity.user_id,passwordjiami);
+        passwordjiami = PasswordJiami.passwordjiami(passwjiemi);
+        myPresenter.PMyDz(MainActivity.user_id, passwordjiami);
 
         adapter = new MyDzAdapter(this,dataBeans);
         recyclerView.setAdapter(adapter);
         adapter.setSetOnClickItem(new MyDzAdapter.setOnClickItem() {
             @Override
             public void onGreat(int eid) {
-
+                Log.e("默认",eid+"");
+                myPresenter.PMyDzMR(MainActivity.user_id, passwordjiami,eid);
             }
         });
 
@@ -77,7 +83,7 @@ public class MyDzActivity extends Activity implements MyContract.MyView.MyDzActi
     }
 
     private void back() {
-        TextView textView = findViewById(R.id.my_dz_back);
+        ImageView textView = findViewById(R.id.my_dz_back);
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -95,6 +101,15 @@ public class MyDzActivity extends Activity implements MyContract.MyView.MyDzActi
             adapter.notifyDataSetChanged();
         }
 
+    }
+
+    @Override
+    public void ShowMyDzMR(Object object) {
+        MyDzMRBean myDzMRBean = (MyDzMRBean) object;
+        if (myDzMRBean.getCode()==0){
+            Toast.makeText(MyDzActivity.this,myDzMRBean.getMsg(),Toast.LENGTH_SHORT).show();
+            onResume();
+        }
     }
 
     @Override

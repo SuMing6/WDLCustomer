@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -67,7 +68,7 @@ public class SubmissionYHActivity extends AppCompatActivity implements MyContrac
     }
 
     private void back() {
-        TextView textView = findViewById(R.id.submission_yh_back);
+        ImageView textView = findViewById(R.id.submission_yh_back);
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -9,7 +9,7 @@
     android:background="#F3F3F3"
     android:paddingBottom="@dimen/dp_1"
     >
-        
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -39,7 +39,7 @@
                             android:layout_below="@+id/adapter_home_goods_right_name"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="立白香氛洗衣粉1.2"
+                            android:text=""
                             android:textColor="#999999"
                             android:textSize="@dimen/dp_12"
                             android:layout_marginTop="@dimen/dp_17"

@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.customer.R;
@@ -52,7 +53,7 @@ public class MyTicketActivity extends AppCompatActivity {
     }
 
     private void back() {
-        TextView textView = findViewById(R.id.my_ticket_back);
+        ImageView textView = findViewById(R.id.my_ticket_back);
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -1,6 +1,7 @@
 package com.example.customer.contract;
 
 
+import java.io.File;
 import java.util.Map;
 
 import okhttp3.MultipartBody;
@@ -9,7 +10,7 @@ public interface MyContract {
     interface MyModel{
         void doGet(String url, Class cls, Map<String, String> map, com.example.customer.model.MyModel.MyCallBack myCallBack);
         void doPost(String url, Class cls, Map<String, String> map, com.example.customer.model.MyModel.MyCallBack myCallBack);
-        void doPTxPost(String url, Class cls, Map<String, String> map, MultipartBody.Part file, com.example.customer.model.MyModel.MyCallBack myCallBack);
+        void doPTxPost(String url, Class cls, int id , String token	, String content , MultipartBody.Part file, com.example.customer.model.MyModel.MyCallBack myCallBack);
     }
     interface MyPresenter{
         //验证码
@@ -29,6 +30,9 @@ public interface MyContract {
         void PHomepageBanner(int cid);
         void PHomepageT(int cid);
         void PHomepageSan();
+        //
+        void PHomeSousuo(String lon,String lat,int province,int city,int area ,int start , String keyword , int id);
+        void PHomeSousuols(int id);
         //首页详情
         void PHomepageGoods(int id);
         //首页详情
@@ -39,7 +43,16 @@ public interface MyContract {
         void PHomePageGoods(int id,int gid,int sid,int num,int uid,String token);
         //详情页购物车
         void PHomePageGoodsCar(int id,int uid,String token);
+        //详情页面搜索
+        void PHomePageGoodsSousuo(int id,String keyword);
+        void PHomePageGoodsSousuoCar(int id,int gid,int sid,int num,int uid,String token);
         void ShowHomePageOnclickEight(String lon,String lat,int province,int city,int area,int start,int shop_cate,int cate_id,int delivery,int coupon,int order);
+
+        //评价列表
+        void PHomePageEvaluateData(int id);
+
+        void PHomeDetailsData(int id);
+
 
 
 
@@ -74,9 +87,14 @@ public interface MyContract {
         void PMyShezhiName(int id,String token,String nickname);
         //我的页面设置支付密码
         void PMyShezhiPwd(int id,String token,int code,String password, String sure_password);
-        void ShowMySheZhiTouxiang(int id, String token, MultipartBody.Part file);
+        void PMyShezhiYZM(String phone);
+        //我的页面上传头像
+        void ShowMySheZhiTouxiang(int id, String token, String url);
+        //退出登錄
+        void ShowMySheZhiOutLogin(int id, String token);
         //我的页面地址列表
         void PMyDz(int id,String token);
+        void PMyDzMR(int id,String token,int address_id);
         //添加地址
         void PAddDz(int id,String token,String name,String phone,String weixin,int province,int city,int district
                 ,String address,int aid,String lon,String lat);
@@ -85,12 +103,16 @@ public interface MyContract {
         void PMyScData(int id,String token,String lon,String lat);
         void PMyScDataDel(int id, String token, int mid);
 
+        void ShowMyYJ(int id, String token,String content , MultipartBody.Part file);
+
         void PMyTicketHBcData(int id, String token, int type);
         void PMyTicketKQcData(int id, String token, int type);
 
 
 
         void PMySocket(int id, String token);
+        void PDianDan(int id, String token,int type);
+        void PTongZhi(int id, String token);
     }
     interface MyView{
         interface MainActivity{
@@ -113,10 +135,29 @@ public interface MyContract {
             void ShowHomePageGoods(Object object);
             void ShowHomePageGoodsCar(Object object);
         }
+        //搜索
+        interface HomepageGoodssousuoActivity{
+            void ShowHomePageGoodsSousuo(Object object);
+            void ShowHomePageGoodsSousuoCar(Object object);
+        }
+        //店铺评价列表
+        interface HomeEvaluateFragment{
+            void ShowHomePageEvaluateData(Object object);
+        }
+        //店铺评价列表
+        interface HomeDetailsFragment{
+            void HomeDetailsData(Object object);
+        }
         interface HomeGoodsFragment{
             void ShowHomePageGoodsF(Object object);
             void ShowHomePageGoodsL(Object object);
             void ShowHomePageGoods(Object object);
+        }
+        interface HomeSousuoActivity{
+            void ShowHomeSousuo(Object object);
+        }
+        interface HomeSousuoLsActivity{
+            void ShowHomeSousuoLs(Object object);
         }
         //   8  图
         interface HomePageOnclickEightActivity{
@@ -168,6 +209,7 @@ public interface MyContract {
             void ShowMySheZhiif(Object object);
             void ShowMySheZhiSex(Object object);
             void ShowMySheZhiTouxiang(Object object);
+            void ShowMySheZhiOut(Object object);
         }
         //我的设置姓名页面
         interface MySheZhiNameActivity{
@@ -176,10 +218,12 @@ public interface MyContract {
         //设置密码
         interface MySheZhiPwdActivity{
             void ShowMySheZhiPwd(Object object);
+            void ShowMySheZhiYZM(Object object);
         }
         //我的页面设置地址
         interface MyDzActivity{
             void ShowMyDz(Object object);
+            void ShowMyDzMR(Object object);
         }
         //我的页面设置地址
         interface MyDzAddActivity{
@@ -199,9 +243,21 @@ public interface MyContract {
         interface MyTicketKQFragment{
             void ShowMyTicketKQcData(Object object);
         }
+        //我的页面意见
+        interface MyYjActivity{
+            void ShowMyYj(Object object);
+        }
         //客服聊天
         interface HomePageMessageCustomer{
             void ShowSocket(Object object);
+        }
+        //首页订单消息
+        interface HomePageDingDan{
+            void ShowDianDan(Object object);
+        }
+        //首页信息
+        interface HomePageMessageActivity{
+            void ShowTongZhi(Object object);
         }
     }
 }

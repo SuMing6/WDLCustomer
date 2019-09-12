@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Rider</string>
+    <string name="app_name">点了么</string>
     <string name="text">账号登录</string>
     <string name="rig">申请入驻</string>
     <string name="Rpwd">忘记密码</string>

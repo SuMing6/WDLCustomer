@@ -26,14 +26,24 @@
     <application
         android:name=".util.App"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/logo"
         android:label="@string/app_name"
         android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".view.my.MyYYActivity"></activity>
+        <activity android:name=".activity.GuideActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".view.homegoods.HomepageGoodssousuoActivity" />
+        <activity android:name=".view.homegoods.HomeSousuoActivity" />
+        <activity android:name=".view.homegoods.HomeSousuoLsActivity" />
+        <activity android:name=".view.homepage.HomePageDingDan" />
+        <activity android:name=".view.my.MyYYActivity" />
         <activity android:name=".view.homepage.HomePageOnclickEightActivity" />
         <activity android:name=".view.homegoods.SubmissionDZActivity" />
         <activity android:name=".view.homegoods.SubmissionYHActivity" />
@@ -44,8 +54,9 @@
         <activity android:name=".view.homegoods.HomeGoodsFragment" />
         <activity android:name=".view.homepage.HomepageGoodsActivity" />
         <activity android:name=".adapter.HomePageNearbyAdapter" />
-        <activity android:name=".view.homepage.HomePageMessageCustomer"
-            android:windowSoftInputMode="stateVisible|adjustResize"/>
+        <activity
+            android:name=".view.homepage.HomePageMessageCustomer"
+            android:windowSoftInputMode="stateVisible|adjustResize" />
         <activity android:name=".view.homepage.HomePageMessageActivity" />
         <activity android:name=".view.my.MyTicketActivity" />
         <activity android:name=".view.my.MyMoneyActivity" />
@@ -69,12 +80,7 @@
         <activity android:name=".activity.ShowActivity" />
         <activity
             android:name=".activity.MainActivity"
-            android:launchMode="singleTop">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:launchMode="singleTask">
         </activity> <!-- 百度地图 -->
         <service
             android:name="com.baidu.location.f"

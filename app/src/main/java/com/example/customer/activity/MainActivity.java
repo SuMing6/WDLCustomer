@@ -1,6 +1,8 @@
 package com.example.customer.activity;
 
 import android.Manifest;
+import android.app.ActionBar;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,7 +12,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -36,6 +37,7 @@ import com.example.customer.bean.LoginBean;
 import com.example.customer.bean.YAMBean;
 import com.example.customer.contract.MyContract;
 import com.example.customer.presenter.MyPresenter;
+import com.example.customer.util.EndApp;
 import com.example.customer.util.RsaUtils;
 import com.example.customer.voice.LanContextWrapper;
 
@@ -43,7 +45,10 @@ import java.security.PublicKey;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class MainActivity extends AppCompatActivity implements MyContract.MyView.MainActivity {
+import io.reactivex.functions.Consumer;
+import io.reactivex.plugins.RxJavaPlugins;
+
+public class MainActivity extends Activity implements MyContract.MyView.MainActivity {
 
     //经
     public static double longitude;
@@ -111,7 +116,8 @@ public class MainActivity extends AppCompatActivity implements MyContract.MyView
                     new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,
                             Manifest.permission.ACCESS_FINE_LOCATION,
                             Manifest.permission.READ_PHONE_STATE,
-                            Manifest.permission.BLUETOOTH},
+                            Manifest.permission.BLUETOOTH,
+                            Manifest.permission.CAMERA},
                     100);
         }else {
         }
@@ -133,9 +139,11 @@ public class MainActivity extends AppCompatActivity implements MyContract.MyView
             //获取经度信息
             longitude = location.getLongitude();
             country = location.getCountry();    //获取国家
+
             province = location.getProvince();    //获取省份
             city = location.getCity();    //获取城市
-            district = location.getDistrict();    //获取区县
+            district = location.getDistrict();    //获取区县.
+
             street = location.getStreet();    //获取街道信息
 
             //获取定位精度，默认值为0.0f
@@ -220,7 +228,13 @@ public class MainActivity extends AppCompatActivity implements MyContract.MyView
         //地址
         //gaode();
         language();
-        initLocationOption();
+        RxJavaPlugins.setErrorHandler(new Consumer<Throwable>() {
+            @Override
+            public void accept(Throwable throwable) {
+                //异常处理
+            }
+        });
+
 
     }
 
@@ -283,9 +297,11 @@ public class MainActivity extends AppCompatActivity implements MyContract.MyView
         token = loginBean.getToken();
         user_id = loginBean.getUser_id();
         if (loginBean.getCode()==0){
+            initLocationOption();
             Intent intent = new Intent(this,ShowActivity.class);
             startActivity(intent);
             finish();
+
         }else {
             Toast.makeText(MainActivity.this,loginBean.getMsg()+"",Toast.LENGTH_LONG).show();
         }
@@ -380,7 +396,7 @@ public class MainActivity extends AppCompatActivity implements MyContract.MyView
             getWindow().setNavigationBarColor(Color.TRANSPARENT);
             getWindow().setStatusBarColor(Color.TRANSPARENT);
         }
-        ActionBar actionBar = getSupportActionBar();
+        ActionBar actionBar = getActionBar();
         if (actionBar != null) {
             actionBar.hide();
         }
@@ -407,6 +423,12 @@ public class MainActivity extends AppCompatActivity implements MyContract.MyView
         rebot();
     }*/
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        initLocationOption();
+    }
+
     private void rebot() {
         if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.N) {
             Intent intent = new Intent(this, MainActivity.class);
@@ -418,5 +440,6 @@ public class MainActivity extends AppCompatActivity implements MyContract.MyView
             recreate();
         }
     }
+
 
 }

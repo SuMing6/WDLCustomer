@@ -11,6 +11,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,13 +19,23 @@ import com.example.customer.R;
 import com.example.customer.activity.MainActivity;
 import com.example.customer.activity.PasswordJiami;
 import com.example.customer.bean.MySheZhiPwdBean;
+import com.example.customer.bean.ShezhiYZMBean;
+import com.example.customer.bean.YAMBean;
 import com.example.customer.contract.MyContract;
 import com.example.customer.presenter.MyPresenter;
+
+import java.util.List;
 
 public class MySheZhiPwdActivity extends AppCompatActivity implements MyContract.MyView.MySheZhiPwdActivity{
 
 
     MyContract.MyPresenter myPresenter = new MyPresenter<>(this);
+    private EditText oldpwd;
+    private String msg;
+    private String passwordjiami;
+    private String passwordjiami1;
+    private String passwordjiami2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,27 +50,41 @@ public class MySheZhiPwdActivity extends AppCompatActivity implements MyContract
 
     private void Qrxg() {
         Button button = findViewById(R.id.my_shezhi_pwd_qr);
-        EditText oldpwd = findViewById(R.id.my_shezhi_pwd_oldpwd);
+        oldpwd = findViewById(R.id.my_shezhi_pwd_oldpwd);
+        TextView textView = findViewById(R.id.my_shezhi_pwd_YZM);
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String s = oldpwd.getText().toString();
+
+                String passwordjiami = PasswordJiami.passwordjiami(s);
+                myPresenter.PMyShezhiYZM(passwordjiami);
+            }
+        });
+
         final EditText pwd1 = findViewById(R.id.my_shezhi_pwd_pwd1);
         final EditText pwd2 = findViewById(R.id.my_shezhi_pwd_pwd2);
+
+        String pwdtext1 = pwd1.getText().toString();
+        String pwdtext2 = pwd2.getText().toString();
+        String s = MainActivity.token;
+        String passwjiemi = PasswordJiami.passwjiemi(s);
+        passwordjiami = PasswordJiami.passwordjiami(passwjiemi);
+
+        passwordjiami1 = PasswordJiami.passwordjiami(pwdtext1);
+        passwordjiami2 = PasswordJiami.passwordjiami(pwdtext2);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String pwdtext1 = pwd1.getText().toString();
-                String pwdtext2 = pwd2.getText().toString();
-                String s = MainActivity.token;
-                String passwjiemi = PasswordJiami.passwjiemi(s);
-                String passwordjiami = PasswordJiami.passwordjiami(passwjiemi);
-                String epwd1 = PasswordJiami.passwordjiami(pwdtext1);
-                String epwd2 = PasswordJiami.passwordjiami(pwdtext2);
-                //Log.e("修改密码",MainActivity.user_id+"---"+passwordjiami+"---"+ Integer.parseInt(MainActivity.yzm)+"---"+epwd1+"---"+epwd2);
-                myPresenter.PMyShezhiPwd(MainActivity.user_id,passwordjiami, Integer.parseInt(MainActivity.yzm),epwd1,epwd2);
+
+                //Log.e("修改密码",MainActivity.user_id+"---"+passwordjiami+"---"+ Integer.parseInt(msg)+"---"+passwordjiami1+"---"+passwordjiami2);
+                myPresenter.PMyShezhiPwd(MainActivity.user_id, passwordjiami, Integer.parseInt(msg) , passwordjiami1, passwordjiami2);
             }
         });
     }
 
     private void back() {
-        TextView textView = findViewById(R.id.my_shezhi_pwd_back);
+        ImageView textView = findViewById(R.id.my_shezhi_pwd_back);
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -77,6 +102,15 @@ public class MySheZhiPwdActivity extends AppCompatActivity implements MyContract
                 finish();
             }
 
+        }
+    }
+
+    @Override
+    public void ShowMySheZhiYZM(Object object) {
+        ShezhiYZMBean yamBean = (ShezhiYZMBean) object;
+        if (yamBean.getCode()==0){
+            msg = yamBean.getMsg();
+            oldpwd.setText(msg);
         }
     }
 

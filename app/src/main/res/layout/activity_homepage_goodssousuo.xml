@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    android:id="@+id/fragment_home_goods_sousuo_LinearLayout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.homegoods.HomepageGoodssousuoActivity">
+    <RelativeLayout
+        android:id="@+id/home_goods_submission_tou"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/dp_30"
+        android:background="#fff"
+        android:paddingBottom="@dimen/dp_9"
+        >
+        <ImageView
+            android:id="@+id/home_goods_sousuo_back"
+            android:layout_width="@dimen/dp_10"
+            android:layout_height="@dimen/dp_14"
+            android:background="@drawable/back"
+            android:layout_marginTop="@dimen/dp_4"
+            android:layout_marginLeft="@dimen/dp_14"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:textSize="@dimen/dp_16"
+            android:text="搜索信息"
+            android:textColor="#FF333333"
+            />
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_marginTop="@dimen/dp_10"
+        android:id="@+id/home_goods_sousuo_RecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/dp_12"
+        android:paddingRight="@dimen/dp_12"></android.support.v7.widget.RecyclerView>
+    <RelativeLayout
+        android:id="@+id/home_goods_sousuo_RelativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></RelativeLayout>
+</LinearLayout>

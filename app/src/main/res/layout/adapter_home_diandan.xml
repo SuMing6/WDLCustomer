@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#F3F3F3"
+    android:paddingBottom="@dimen/dp_1">
+    <LinearLayout
+        android:orientation="vertical"
+        android:background="#fff"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="@dimen/dp_12"
+        android:paddingRight="@dimen/dp_12"
+        android:paddingTop="@dimen/dp_14"
+        android:paddingBottom="@dimen/dp_14">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/adapter_home_diandan_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="订单状态"/>
+            <TextView
+                android:id="@+id/adapter_home_diandan_time"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="状态时间"/>
+        </RelativeLayout>
+        <TextView
+            android:id="@+id/adapter_home_diandan_qishou"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_10"
+            android:text="骑手"/>
+    </LinearLayout>
+</LinearLayout>

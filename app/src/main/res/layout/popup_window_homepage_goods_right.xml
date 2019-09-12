@@ -13,16 +13,6 @@
         android:layout_marginRight="@dimen/dp_19"
         android:layout_marginLeft="@dimen/dp_19"
         >
-        <TextView
-            android:id="@+id/popup_window_homepage_goods_right_back"
-            android:layout_width="@dimen/dp_20"
-            android:layout_height="@dimen/dp_20"
-            android:layout_alignParentRight="true"
-            android:background="@drawable/shape_mainactivity_button"
-            android:text="x"
-            android:gravity="center"
-            android:textColor="#fff"
-            />
     </RelativeLayout>
     <TextView
         android:layout_marginRight="@dimen/dp_19"

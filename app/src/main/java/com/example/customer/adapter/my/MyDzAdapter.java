@@ -42,6 +42,9 @@ public class MyDzAdapter extends RecyclerView.Adapter<MyDzAdapter.holder> {
         holder.name.setText(dataBeans.get(position).getName());
         holder.phone.setText(dataBeans.get(position).getPhone());
         holder.xx.setText(dataBeans.get(position).getAddress());
+        if (dataBeans.get(position).getStatus()==1){
+            holder.button.setChecked(true);
+        }
 
         holder.button.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -54,17 +57,22 @@ public class MyDzAdapter extends RecyclerView.Adapter<MyDzAdapter.holder> {
                 }
             }
         });
-        if(index==position){
+
+        if(dataBeans.get(position).getStatus()==1 || index==position){
             holder.button.setChecked(true);
         } else {
             holder.button.setChecked(false);
         }
-        holder.bj.setOnClickListener(new View.OnClickListener() {
+        holder.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 setOnClickItem.onGreat(dataBeans.get(position).getId());
+
             }
         });
+        /*if (dataBeans.get(position).getStatus()==1){
+            holder.button.setChecked(true);
+        }*/
 
     }
 

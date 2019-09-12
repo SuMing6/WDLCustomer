@@ -3,6 +3,7 @@ package com.example.customer.data;
 public class Port {
     //验证码
     public static String mainActivityYZM="api/login/login_post_code";
+    public static String mainActivityY="api/login/login_post_code";
     //登录
     public static String mainActivityLogin="api/login/login_user_code";
     //注册
@@ -17,6 +18,9 @@ public class Port {
     public static String HomePageBanner="api/home/get_cate_adv";
     public static String HomePageT="api/home/get_cate_adv";
     public static String HomePageSan="api/home/get_home_three_adv\n";
+
+    public static String HomeSouSuo="api/home/post_home_shop_list_search\n";
+    public static String HomeSouSuoLs="api/home/get_keyword_search";
     //首页详情
     public static String HomePageGoods="api/home/post_home_shop_info\n";
     public static String HomePageGoodsList="api/home/post_home_shop_goods\n";
@@ -24,8 +28,15 @@ public class Port {
     public static String HomePageGoodsAdd="api/home/post_home_order_cart\n";
     //详情页购物车
     public static String HomePageGoodsCar="api/home/post_home_shop_cart\n";
+    //详情页搜索
+    public static String HomePageGoodsSousuo="api/home/post_home_shop_search\n";
+    public static String HomePageGoodsSousuocar="api/home/post_home_order_cart\n";
     //8图片
     public static String HomePageOnclickEight="api/home/post_home_shop_list\n";
+    //评论列表
+    public static String EvaluateData="api/home/post_home_shop_comment\n";
+
+    public static String DetailsData="api/home/post_home_shop_data\n";
 
 
 
@@ -62,17 +73,24 @@ public class Port {
     //设置密码
     public static String MySheZhiPwd="api/user/set_user_password\n";
     public static String MySheZhiTX="api/user/set_user_head_img\n";
+    public static String MySheZhiOut="api/login/login_post_user_out\n";
     //我的地址列表
     public static String MyDz="api/user/post_user_address_list\n";
+    public static String MyDzMR="api/user/post_user_address_check\n";
+
     public static String AddDz="api/user/user_addr_add\n";
     public static String san="api/home/get_area_list\n";
     //我的页面收藏
     public static String ScData="api/user/post_user_collect_list\n";
     public static String ScDataDel="api/user/post_user_collect_info\n";
 
+    public static String MyYj="api/user/post_user_feedback\n";
+
     public static String MyTicketHBcData="api/user/post_user_red_card\n";
     public static String MyTicketKQcData="api/user/post_user_red_card\n";
 
 
     public static String MySocket="api/user/post_user_chat_record\n";
+    public static String DianDan="api/user/post_user_message_list\n";
+    public static String TongZhi="api/user/post_user_message\n";
 }

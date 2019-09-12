@@ -11,6 +11,7 @@ import okhttp3.MultipartBody;
 import okhttp3.ResponseBody;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
+import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -33,6 +34,6 @@ public interface Api {
 
     @POST()
     @Multipart
-    Observable<ResponseBody> requestTPost(@Url String url, @FieldMap Map<String, String> map ,@Part MultipartBody.Part file);
+    Observable<ResponseBody> requestTPost(@Url String urla, @Query("id") int id, @Query("token") String token ,@Query("content") String content , @Part MultipartBody.Part file);
 
 }

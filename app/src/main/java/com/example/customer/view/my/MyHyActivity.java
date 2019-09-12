@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -71,7 +72,7 @@ public class MyHyActivity extends AppCompatActivity {
     }
 
     private void back() {
-        TextView textView = findViewById(R.id.my_hy_back);
+        ImageView textView = findViewById(R.id.my_hy_back);
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

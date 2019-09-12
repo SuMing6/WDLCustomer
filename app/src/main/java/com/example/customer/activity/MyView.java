@@ -11,6 +11,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -68,7 +69,7 @@ public class MyView extends AppCompatActivity implements MyContract.MyView.Order
     }
 
     private void back() {
-        TextView textView = findViewById(R.id.myview_star_back);
+        ImageView textView = findViewById(R.id.myview_star_back);
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

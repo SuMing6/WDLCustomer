@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.customer.R;
@@ -84,7 +85,7 @@ public class SubmissionDZActivity extends AppCompatActivity implements MyContrac
     }
 
     private void back() {
-        TextView textView = findViewById(R.id.submission_dz_back);
+        ImageView textView = findViewById(R.id.submission_dz_back);
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

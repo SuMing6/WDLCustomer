@@ -14,6 +14,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
@@ -173,7 +174,7 @@ public class MyScActivity extends Activity implements MyContract.MyView.MyScActi
     }
 
     private void back() {
-        TextView textView = findViewById(R.id.my_sc_back);
+        ImageView textView = findViewById(R.id.my_sc_back);
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

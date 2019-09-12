@@ -9,11 +9,14 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.customer.R;
@@ -22,12 +25,16 @@ import com.example.customer.activity.PasswordJiami;
 import com.example.customer.adapter.TabLayoutAdapter;
 import com.example.customer.bean.HomeGoodsBean;
 import com.example.customer.bean.HomeGoodsCarBean;
+import com.example.customer.bean.HomePageGoodSousuoBean;
 import com.example.customer.contract.MyContract;
 import com.example.customer.view.homegoods.HomeDetailsFragment;
 import com.example.customer.view.homegoods.HomeEvaluateFragment;
 import com.example.customer.view.homegoods.HomeGoodsFragment;
 import com.example.customer.presenter.MyPresenter;
 import com.example.customer.view.homegoods.HomeGoodsSubmissionActivity;
+import com.example.customer.view.homegoods.HomeSousuoActivity;
+import com.example.customer.view.homegoods.HomeSousuoLsActivity;
+import com.example.customer.view.homegoods.HomepageGoodssousuoActivity;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.ArrayList;
@@ -54,7 +61,7 @@ public class HomepageGoodsActivity extends AppCompatActivity implements MyContra
         super.onCreate(savedInstanceState);
         XNAJ();
         setContentView(R.layout.activity_homepage_goods);
-        TextView textView =findViewById(R.id.activity_back);
+        ImageView textView =findViewById(R.id.activity_back);
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -76,6 +83,20 @@ public class HomepageGoodsActivity extends AppCompatActivity implements MyContra
         js();
 
         tabLayout();
+        final EditText editText = findViewById(R.id.activity_shousuo);
+        TextView sousuo = findViewById(R.id.activity_textview);
+        sousuo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (TextUtils.isEmpty(editText.getText())){
+
+                }else {
+                    Intent intent = new Intent(HomepageGoodsActivity.this, HomepageGoodssousuoActivity.class);
+                    intent.putExtra("n",editText.getText().toString());
+                    startActivity(intent);
+                }
+            }
+        });
     }
 
     private void js() {
@@ -137,6 +158,8 @@ public class HomepageGoodsActivity extends AppCompatActivity implements MyContra
         }
 
     }
+
+
 
     private void tabLayout() {
         TabLayout tab = findViewById(R.id.homepage_goods_TabLayout);

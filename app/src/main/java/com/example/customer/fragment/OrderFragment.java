@@ -79,6 +79,12 @@ public class OrderFragment extends Fragment implements MyContract.MyView.OrderFr
                 }
             }
         });
+        orderAdapter.setSetOnClickItemt(new OrderAdapter.setOnClickItemt() {
+            @Override
+            public void onGreat(int id) {
+
+            }
+        });
 
     }
 

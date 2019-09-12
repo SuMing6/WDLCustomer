@@ -204,7 +204,7 @@ public class HomePageMessageCustomer extends AppCompatActivity implements MyCont
     }
 
     private void back() {
-        TextView textView = findViewById(R.id.homepage_message_customer_back);
+        ImageView textView = findViewById(R.id.homepage_message_customer_back);
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

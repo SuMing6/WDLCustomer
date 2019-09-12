@@ -131,13 +131,12 @@
                 android:layout_marginLeft="@dimen/dp_10"
                 android:textColor="#111111"
                 />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="＞"
+            <ImageView
+                android:layout_width="@dimen/dp_10"
+                android:layout_height="@dimen/dp_15"
+                android:background="@drawable/go"
                 android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:textColor="#999999"/>
+                android:layout_centerVertical="true"/>
         </RelativeLayout>
         <RelativeLayout
             android:id="@+id/my_RelativeLayout_sc"
@@ -163,13 +162,12 @@
                 android:layout_marginLeft="@dimen/dp_10"
                 android:textColor="#111111"
                 />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=" ＞"
+            <ImageView
+                android:layout_width="@dimen/dp_10"
+                android:layout_height="@dimen/dp_15"
+                android:background="@drawable/go"
                 android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:textColor="#999999"/>
+                android:layout_centerVertical="true"/>
         </RelativeLayout>
         <RelativeLayout
             android:id="@+id/my_RelativeLayout_hy"
@@ -194,13 +192,12 @@
                 android:layout_marginLeft="@dimen/dp_10"
                 android:textColor="#111111"
                 />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="＞"
+            <ImageView
+                android:layout_width="@dimen/dp_10"
+                android:layout_height="@dimen/dp_15"
+                android:background="@drawable/go"
                 android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:textColor="#999999"/>
+                android:layout_centerVertical="true"/>
         </RelativeLayout>
         <RelativeLayout
             android:id="@+id/my_RelativeLayout_yy"
@@ -228,13 +225,12 @@
                 android:layout_marginLeft="@dimen/dp_10"
                 android:textColor="#111111"
                 />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="＞"
+            <ImageView
+                android:layout_width="@dimen/dp_10"
+                android:layout_height="@dimen/dp_15"
+                android:background="@drawable/go"
                 android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:textColor="#999999"/>
+                android:layout_centerVertical="true"/>
         </RelativeLayout>
         <RelativeLayout
             android:id="@+id/my_RelativeLayout_kf"
@@ -259,13 +255,12 @@
                 android:layout_marginLeft="@dimen/dp_10"
                 android:textColor="#111111"
                 />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="＞"
+            <ImageView
+                android:layout_width="@dimen/dp_10"
+                android:layout_height="@dimen/dp_15"
+                android:background="@drawable/go"
                 android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:textColor="#999999"/>
+                android:layout_centerVertical="true"/>
         </RelativeLayout>
         <RelativeLayout
             android:id="@+id/my_RelativeLayout_yj"
@@ -290,13 +285,12 @@
                 android:layout_marginLeft="@dimen/dp_10"
                 android:textColor="#111111"
                 />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="＞"
+            <ImageView
+                android:layout_width="@dimen/dp_10"
+                android:layout_height="@dimen/dp_15"
+                android:background="@drawable/go"
                 android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:textColor="#999999"/>
+                android:layout_centerVertical="true"/>
         </RelativeLayout>
         <RelativeLayout
             android:id="@+id/my_RelativeLayout_wm"
@@ -321,13 +315,12 @@
                 android:layout_marginLeft="@dimen/dp_10"
                 android:textColor="#111111"
                 />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="＞"
+            <ImageView
+                android:layout_width="@dimen/dp_10"
+                android:layout_height="@dimen/dp_15"
+                android:background="@drawable/go"
                 android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:textColor="#999999"/>
+                android:layout_centerVertical="true"/>
         </RelativeLayout>
 
     </LinearLayout>

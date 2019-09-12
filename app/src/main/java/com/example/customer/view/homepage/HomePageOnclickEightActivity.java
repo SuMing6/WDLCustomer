@@ -88,7 +88,7 @@ public class HomePageOnclickEightActivity extends AppCompatActivity implements M
     }
 
     private void back() {
-        TextView textView = findViewById(R.id.home_page_onclick_eight_back);
+        ImageView textView = findViewById(R.id.home_page_onclick_eight_back);
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

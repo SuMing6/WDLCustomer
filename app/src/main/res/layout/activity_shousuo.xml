@@ -7,14 +7,14 @@
     android:paddingBottom="@dimen/dp_7"
     android:background="#FCFCFC">
 
-    <TextView
+
+    <ImageView
         android:id="@+id/activity_back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="＜"
-        android:textSize="@dimen/dp_14"
-        android:layout_marginTop="@dimen/dp_2"
-        android:layout_marginLeft="@dimen/dp_14"/>
+        android:layout_width="@dimen/dp_10"
+        android:layout_height="@dimen/dp_14"
+        android:background="@drawable/back"
+        android:layout_gravity="center"
+        android:layout_marginLeft="@dimen/dp_15"/>
     <EditText
         android:id="@+id/activity_shousuo"
         android:layout_width="@dimen/dp_240"
@@ -25,6 +25,12 @@
         android:textColor="#A9A9A9"
         android:paddingLeft="@dimen/dp_20"
         android:layout_marginLeft="@dimen/dp_18"
-        android:layout_marginRight="@dimen/dp_38"
+        android:layout_marginRight="@dimen/dp_20"
         android:layout_weight="7"/>
+    <TextView
+        android:id="@+id/activity_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="搜索"
+        android:layout_marginRight="@dimen/dp_15"/>
 </LinearLayout>
